@@ -1,12 +1,3 @@
-"""
-New Year Photo Booth 2026 - Fully Automated
-Primary: gphoto2 inside WSL (Windows Subsystem for Linux)
-Auto-handles: usbipd bind, attach, WSL startup, camera detection
-Fallback: Windows Image Acquisition (WIA)
-Author: AI Assistant
-Date: December 2025
-"""
-
 import tkinter as tk
 from tkinter import Canvas, Button
 from PIL import Image, ImageTk, ImageWin
@@ -70,7 +61,7 @@ except Exception:
     os.makedirs(DRIVE_DIR, exist_ok=True)
 
 # WSL / gphoto2 settings
-WSL_DISTRO = "Ubuntu"
+WSL_DISTRO = "Ubuntu-22.04"
 GPHOTO_CMD = "gphoto2"
 
 # USB camera settings - Nikon Z6_3
@@ -78,13 +69,15 @@ CAMERA_VID_PID = "04b0:0454"
 CAMERA_DEVICE_NAME = "Z6_3"
 USBIPD_EXE = r"C:\Program Files\usbipd-win\usbipd.exe"
 
-# Theme Colors
-THEME_BG = "#0a0e1a"
+# Theme Colors - Premium New Year 2026
+THEME_BG = "#0d0d1a"
 THEME_ACCENT = "#FFD700"
+THEME_ACCENT_2 = "#FF6B9D"
 THEME_TEXT = "#FFFFFF"
-THEME_SUCCESS = "#28a745"
-THEME_DANGER = "#dc3545"
+THEME_SUCCESS = "#00D9A5"
+THEME_DANGER = "#FF4757"
 THEME_PRINT = "#FF6B35"
+THEME_GLOW = "#B388FF"
 
 # UI Settings
 FONT_FAMILY = "Segoe UI"
@@ -98,6 +91,17 @@ BUTTON_SIZE = 20
 SNOW_COUNT = 100
 SNOW_SPEED = (1, 4)
 ANIMATION_FPS = 33
+
+# Print Settings - Customize for your paper size
+# Set to None to use printer defaults, or specify in inches
+PRINT_PAPER_WIDTH_INCHES = 6       # Paper width in inches (e.g., 4, 5, 6)
+PRINT_PAPER_HEIGHT_INCHES = 4      # Paper height in inches (e.g., 4, 6)
+PRINT_MARGIN_INCHES = 0.0          # Margin around the image in inches
+PRINT_FIT_TO_PAGE = True           # True = fit image to page, False = use original size
+PRINT_CENTER_ON_PAGE = True        # Center the image on the page
+
+# Global print job counter
+_print_job_counter = 0
 
 # ============================================================================
 # HELPERS
@@ -187,6 +191,31 @@ def cleanup_old_temp_files(max_age_days: int = 7):
                     write_log(f"Could not delete {filename}: {e}")
     except Exception as e:
         write_log(f"Cleanup error: {e}")
+
+
+def disable_usb_selective_suspend():
+    """Disable USB selective suspend to prevent Windows from disconnecting USB devices.
+    This is a common cause of camera disconnections on laptops.
+    """
+    try:
+        # Disable USB selective suspend on current power scheme
+        # GUID 2a737441-1930-4402-8d77-b2bebba308a3 is USB settings
+        # Sub-GUID 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 is USB selective suspend
+        result = subprocess.run(
+            ["powercfg", "/SETACVALUEINDEX", "SCHEME_CURRENT", 
+             "2a737441-1930-4402-8d77-b2bebba308a3", 
+             "48e6b7a6-50f5-4782-a5d4-53bb8f07e226", "0"],
+            capture_output=True, timeout=10
+        )
+        if result.returncode == 0:
+            # Apply changes
+            subprocess.run(["powercfg", "/SETACTIVE", "SCHEME_CURRENT"], 
+                          capture_output=True, timeout=10)
+            write_log("✓ USB selective suspend disabled (prevents camera disconnects)")
+            return True
+    except Exception as e:
+        write_log(f"Could not disable USB selective suspend: {e}")
+    return False
 
 
 def run_command(cmd, timeout=10, shell=False):
@@ -968,6 +997,9 @@ class CameraManager:
 # ============================================================================
 
 class Snowflake:
+    """Festive particle - snow or golden sparkle"""
+    COLORS = ["white", "white", "white", "#FFD700", "#FFD700", "#FF6B9D", "#B388FF"]  # Mix of snow and sparkles
+    
     def __init__(self, canvas: Canvas, width: int, height: int):
         self.canvas = canvas
         self.width = width
@@ -977,12 +1009,16 @@ class Snowflake:
     def reset(self):
         self.x = random.randint(0, self.width)
         self.y = random.randint(-self.height, 0)
-        self.size = random.randint(2, 7)
+        self.size = random.randint(2, 8)
         self.speed = random.uniform(*SNOW_SPEED)
-        self.drift = random.uniform(-0.5, 0.5)
+        self.drift = random.uniform(-0.8, 0.8)
+        self.color = random.choice(self.COLORS)
+        # Golden particles are slightly larger
+        if self.color != "white":
+            self.size = random.randint(3, 6)
         self.id = self.canvas.create_oval(
             self.x, self.y, self.x + self.size, self.y + self.size,
-            fill="white", outline="", tags="snow"
+            fill=self.color, outline="", tags="snow"
         )
 
     def update(self):
@@ -994,6 +1030,225 @@ class Snowflake:
         if self.x < 0 or self.x > self.width:
             self.x = random.randint(0, self.width)
         self.canvas.coords(self.id, self.x, self.y, self.x + self.size, self.y + self.size)
+
+# ============================================================================
+# THEMED DIALOG (Canvas overlay - stays in fullscreen)
+# ============================================================================
+
+class ThemedDialog:
+    """Custom dialog overlaid on the main canvas - no fullscreen exit needed"""
+    
+    @staticmethod
+    def ask_yes_no(parent, title: str, message: str, icon: str = "⚠️", canvas=None) -> bool:
+        """Show a themed yes/no dialog as canvas overlay. Returns True if yes."""
+        
+        # Try to find the canvas if not provided
+        if canvas is None:
+            for child in parent.winfo_children():
+                if isinstance(child, Canvas):
+                    canvas = child
+                    break
+        
+        if canvas is None:
+            # Fallback to simple dialog if no canvas found
+            from tkinter import messagebox
+            return messagebox.askyesno(title, message)
+        
+        result = [None]  # Store result
+        
+        # Get canvas dimensions
+        cw = canvas.winfo_width()
+        ch = canvas.winfo_height()
+        
+        # Create dark overlay background
+        overlay = canvas.create_rectangle(
+            0, 0, cw, ch,
+            fill="#000000", stipple="gray50",
+            tags="dialog_overlay"
+        )
+        
+        # Dialog box dimensions (larger for better readability)
+        dw, dh = 600, 340
+        dx = (cw - dw) // 2
+        dy = (ch - dh) // 2
+        
+        # Dialog background (dark with gold border effect)
+        canvas.create_rectangle(
+            dx-4, dy-4, dx+dw+4, dy+dh+4,
+            fill=THEME_ACCENT, outline="",
+            tags="dialog_overlay"
+        )
+        canvas.create_rectangle(
+            dx, dy, dx+dw, dy+dh,
+            fill=THEME_BG, outline="",
+            tags="dialog_overlay"
+        )
+        
+        # Icon
+        canvas.create_text(
+            dx + dw//2, dy + 65,
+            text=icon, font=("Segoe UI Emoji", 52),
+            fill=THEME_ACCENT,
+            tags="dialog_overlay"
+        )
+        
+        # Title
+        canvas.create_text(
+            dx + dw//2, dy + 135,
+            text=title, font=("Segoe UI", 28, "bold"),
+            fill=THEME_TEXT,
+            tags="dialog_overlay"
+        )
+        
+        # Message
+        canvas.create_text(
+            dx + dw//2, dy + 190,
+            text=message, font=("Segoe UI", 20),
+            fill="#CCCCCC", width=550,
+            tags="dialog_overlay"
+        )
+        
+        # YES button
+        yes_x, yes_y = dx + dw//2 - 100, dy + 275
+        yes_btn = canvas.create_rectangle(
+            yes_x-65, yes_y-28, yes_x+65, yes_y+28,
+            fill=THEME_SUCCESS, outline="white", width=2,
+            tags="dialog_overlay"
+        )
+        yes_txt = canvas.create_text(
+            yes_x, yes_y, text="✓  YES",
+            font=("Segoe UI", 20, "bold"), fill="white",
+            tags="dialog_overlay"
+        )
+        
+        # NO button
+        no_x, no_y = dx + dw//2 + 100, dy + 275
+        no_btn = canvas.create_rectangle(
+            no_x-65, no_y-28, no_x+65, no_y+28,
+            fill=THEME_DANGER, outline="white", width=2,
+            tags="dialog_overlay"
+        )
+        no_txt = canvas.create_text(
+            no_x, no_y, text="✗  NO",
+            font=("Segoe UI", 20, "bold"), fill="white",
+            tags="dialog_overlay"
+        )
+        
+        def on_yes(event=None):
+            result[0] = True
+            canvas.delete("dialog_overlay")
+        
+        def on_no(event=None):
+            result[0] = False
+            canvas.delete("dialog_overlay")
+        
+        # Bind click events
+        canvas.tag_bind(yes_btn, "<Button-1>", on_yes)
+        canvas.tag_bind(yes_txt, "<Button-1>", on_yes)
+        canvas.tag_bind(no_btn, "<Button-1>", on_no)
+        canvas.tag_bind(no_txt, "<Button-1>", on_no)
+        
+        # Raise dialog to top
+        canvas.tag_raise("dialog_overlay")
+        
+        # Wait for user response
+        while result[0] is None:
+            parent.update()
+            parent.after(50)
+        
+        return result[0]
+    
+    @staticmethod  
+    def show_message(parent, title: str, message: str, icon: str = "✓", canvas=None):
+        """Show a themed message dialog as canvas overlay."""
+        
+        if canvas is None:
+            for child in parent.winfo_children():
+                if isinstance(child, Canvas):
+                    canvas = child
+                    break
+        
+        if canvas is None:
+            from tkinter import messagebox
+            messagebox.showinfo(title, message)
+            return
+        
+        cw = canvas.winfo_width()
+        ch = canvas.winfo_height()
+        
+        # Overlay
+        canvas.create_rectangle(
+            0, 0, cw, ch,
+            fill="#000000", stipple="gray50",
+            tags="dialog_overlay"
+        )
+        
+        # Dialog box
+        dw, dh = 450, 220
+        dx = (cw - dw) // 2
+        dy = (ch - dh) // 2
+        
+        canvas.create_rectangle(
+            dx-4, dy-4, dx+dw+4, dy+dh+4,
+            fill=THEME_ACCENT, outline="",
+            tags="dialog_overlay"
+        )
+        canvas.create_rectangle(
+            dx, dy, dx+dw, dy+dh,
+            fill=THEME_BG, outline="",
+            tags="dialog_overlay"
+        )
+        
+        # Icon
+        canvas.create_text(
+            dx + dw//2, dy + 50,
+            text=icon, font=("Segoe UI Emoji", 40),
+            fill=THEME_SUCCESS,
+            tags="dialog_overlay"
+        )
+        
+        # Title
+        canvas.create_text(
+            dx + dw//2, dy + 100,
+            text=title, font=("Segoe UI", 20, "bold"),
+            fill=THEME_TEXT,
+            tags="dialog_overlay"
+        )
+        
+        # Message
+        canvas.create_text(
+            dx + dw//2, dy + 140,
+            text=message, font=("Segoe UI", 14),
+            fill="#CCCCCC", width=400,
+            tags="dialog_overlay"
+        )
+        
+        # OK button
+        ok_x, ok_y = dx + dw//2, dy + 185
+        ok_btn = canvas.create_rectangle(
+            ok_x-50, ok_y-18, ok_x+50, ok_y+18,
+            fill=THEME_ACCENT, outline="white", width=2,
+            tags="dialog_overlay"
+        )
+        ok_txt = canvas.create_text(
+            ok_x, ok_y, text="OK",
+            font=("Segoe UI", 14, "bold"), fill="black",
+            tags="dialog_overlay"
+        )
+        
+        done = [False]
+        
+        def on_ok(event=None):
+            done[0] = True
+            canvas.delete("dialog_overlay")
+        
+        canvas.tag_bind(ok_btn, "<Button-1>", on_ok)
+        canvas.tag_bind(ok_txt, "<Button-1>", on_ok)
+        canvas.tag_raise("dialog_overlay")
+        
+        while not done[0]:
+            parent.update()
+            parent.after(50)
 
 # ============================================================================
 # PHOTO ZOOM & GALLERY VIEWER (Lightweight)
@@ -1020,7 +1275,7 @@ class PhotoZoomViewer:
         self.pan_x = 0.0
         self.pan_y = 0.0
         self.min_zoom = 0.5
-        self.max_zoom = 4.0
+        self.max_zoom = 6.0  # Allow more zoom for detail
         
         # Base display dimensions
         self.base_display_w = 0
@@ -1120,13 +1375,27 @@ class PhotoZoomViewer:
             write_log(f"Error rendering photo: {e}")
 
     def _clamp_pan(self):
-        """Keep image on screen"""
+        """Keep image on screen but allow full panning when zoomed"""
         if self.base_display_w == 0:
             return
         display_w = self.base_display_w * self.zoom_level
         display_h = self.base_display_h * self.zoom_level
-        max_pan_x = max(0, (display_w - self.width * 0.85) / 2)
-        max_pan_y = max(0, (display_h - self.height * 0.75) / 2)
+        
+        # Allow panning up to image edge, with some margin for buttons
+        # When zoomed in (image larger than viewport), allow panning to see edges
+        visible_w = self.width * 0.75  # Account for side buttons
+        visible_h = self.height * 0.70  # Account for header/footer
+        
+        if display_w > visible_w:
+            max_pan_x = (display_w - visible_w) / 2
+        else:
+            max_pan_x = 0
+            
+        if display_h > visible_h:
+            max_pan_y = (display_h - visible_h) / 2
+        else:
+            max_pan_y = 0
+            
         self.pan_x = max(-max_pan_x, min(max_pan_x, self.pan_x))
         self.pan_y = max(-max_pan_y, min(max_pan_y, self.pan_y))
 
@@ -1153,8 +1422,9 @@ class PhotoZoomViewer:
             if self.photo_counter_id:
                 self.canvas.itemconfig(self.photo_counter_id, text=counter_text)
             else:
+                # Position below header bar (header is 80px tall)
                 self.photo_counter_id = self.canvas.create_text(
-                    self.width // 2, 40,
+                    self.width // 2, 100,
                     text=counter_text,
                     font=("Segoe UI", 20, "bold"),
                     fill="#FFFFFF",
@@ -1175,6 +1445,10 @@ class PhotoZoomViewer:
             self._cache_image()
             self._render_photo()
             self._update_photo_counter()
+            
+            # Notify callback if set (for updating button states)
+            if hasattr(self, 'on_photo_changed') and self.on_photo_changed:
+                self.on_photo_changed(self.photos[photo_idx])
 
     def _on_mousewheel(self, event):
         """Simple zoom on mouse wheel"""
@@ -1246,53 +1520,88 @@ class PhotoZoomViewer:
         self._render_photo()
 
     def create_control_buttons(self):
-        """Create clean control buttons - positioned to avoid logo overlap"""
+        """Create modern control buttons with cool styling"""
         try:
             self.hide_control_buttons()
             
-            # Position controls below the logo area (logo is at ~0.08*width, 0.16*height)
-            button_y = int(self.height * 0.35)  # Below logo
-            button_size = 55
-            button_spacing = 70
-            start_x = 60
+            # Gallery header bar at top
+            header_y = 50
+            self.canvas.create_rectangle(
+                0, 0, self.width, 80,
+                fill="#1a1a2e", outline="", tags="zoom_button"
+            )
+            self.canvas.create_text(
+                self.width // 2, header_y,
+                text="📸 PHOTO GALLERY",
+                font=("Segoe UI", 28, "bold"),
+                fill=THEME_ACCENT,
+                tags="zoom_button"
+            )
+            
+            # Control buttons - modern circular design
+            button_y = int(self.height * 0.50)  # Centered vertically
+            button_size = 70
+            
+            # LEFT SIDE - Zoom controls (vertical stack)
+            left_x = 70
+            zoom_spacing = 85
+            
+            # Zoom In button
+            self._create_modern_btn(left_x, button_y - zoom_spacing, button_size, "➕", THEME_ACCENT, "#000", self._touch_zoom_in)
+            
+            # Zoom Out button
+            self._create_modern_btn(left_x, button_y, button_size, "➖", THEME_ACCENT, "#000", self._touch_zoom_out)
+            
+            # Reset button
+            self._create_modern_btn(left_x, button_y + zoom_spacing, button_size, "⟳", THEME_SUCCESS, "#FFF", self._touch_zoom_reset)
 
-            # Zoom In button (+)
-            self._create_control_btn(start_x, button_y, button_size, "+", "#FFD700", "#000", self._touch_zoom_in)
+            # RIGHT SIDE - Navigation (vertical stack)
+            right_x = self.width - 70
             
-            # Zoom Out button (−)
-            self._create_control_btn(start_x + button_spacing, button_y, button_size, "−", "#FFD700", "#000", self._touch_zoom_out)
+            # Previous Photo button
+            self._create_modern_btn(right_x, button_y - zoom_spacing // 2, button_size, "◀", THEME_PRINT, "#FFF", self._touch_prev_photo)
             
-            # Reset Zoom button (↺)
-            self._create_control_btn(start_x + button_spacing * 2, button_y, button_size, "↺", "#28a745", "#FFF", self._touch_zoom_reset)
-
-            # Navigation buttons on right side
-            nav_x = self.width - 60
+            # Next Photo button
+            self._create_modern_btn(right_x, button_y + zoom_spacing // 2, button_size, "▶", THEME_PRINT, "#FFF", self._touch_next_photo)
             
-            # Previous Photo button (◀)
-            self._create_control_btn(nav_x - button_spacing, button_y, button_size, "◀", "#FF6B35", "#FFF", self._touch_prev_photo)
-            
-            # Next Photo button (▶)
-            self._create_control_btn(nav_x, button_y, button_size, "▶", "#FF6B35", "#FFF", self._touch_next_photo)
-            
-            # Show photo counter and zoom indicator
+            # Photo counter and zoom indicator
             self._update_photo_counter()
             self._update_zoom_indicator()
 
         except Exception as e:
             write_log(f"Error creating control buttons: {e}")
 
-    def _create_control_btn(self, x, y, size, text, bg_color, text_color, callback):
-        """Helper to create a control button"""
-        half = size // 2
-        rect = self.canvas.create_rectangle(
-            x - half, y - half, x + half, y + half,
-            fill=bg_color, outline="#FFF", width=2, tags="zoom_button"
+    def _create_modern_btn(self, x, y, size, text, bg_color, text_color, callback):
+        """Create modern circular button with shadow"""
+        radius = size // 2
+        
+        # Shadow (offset circle)
+        shadow = self.canvas.create_oval(
+            x - radius + 4, y - radius + 4,
+            x + radius + 4, y + radius + 4,
+            fill="#0a0a14", outline="", tags="zoom_button"
         )
+        
+        # Main button circle
+        btn = self.canvas.create_oval(
+            x - radius, y - radius,
+            x + radius, y + radius,
+            fill=bg_color, outline="#FFFFFF", width=3, tags="zoom_button"
+        )
+        
+        # Button text/icon
         txt = self.canvas.create_text(
-            x, y, text=text, font=("Arial", 28, "bold"), fill=text_color, tags="zoom_button"
+            x, y, text=text,
+            font=("Segoe UI Emoji", 24, "bold"),
+            fill=text_color, tags="zoom_button"
         )
-        self.canvas.tag_bind(rect, "<Button-1>", lambda e: callback())
+        
+        self.canvas.tag_bind(btn, "<Button-1>", lambda e: callback())
         self.canvas.tag_bind(txt, "<Button-1>", lambda e: callback())
+
+    def _create_control_btn(self, x, y, size, text, bg_color, text_color, callback):
+        """Legacy helper - redirects to modern button"""
+        self._create_modern_btn(x, y, size, text, bg_color, text_color, callback)
 
     def hide_control_buttons(self):
         """Hide control buttons and zoom UI"""
@@ -1358,6 +1667,10 @@ class PhotoBooth:
         self.last_retry_time = 0
         self.zoom_viewer = None  # Will be initialized after UI setup
         self.snow_paused = False  # Pause snow during photo view for performance
+        
+        # Threading lock to prevent race conditions on camera reconnect
+        self.camera_reconnect_lock = threading.Lock()
+        self.pause_keepalive = False  # Pause keepalive during active capture
 
         self.camera_manager = CameraManager()
 
@@ -1390,53 +1703,178 @@ class PhotoBooth:
 
     def setup_ui_elements(self):
         center_x = self.width / 2
-        self.ui_title = self.canvas.create_text(
-            center_x, self.height * 0.12,
-            text="HAPPY NEW YEAR 2026",
-            font=(FONT_FAMILY, TITLE_SIZE + 6, "bold"),
-            fill=THEME_ACCENT,
-            tags="ui"
+        
+        # Animation state for pulsing effects
+        self.animation_frame = 0
+        self.twinkling_stars = []
+        
+        # Create twinkling stars around the screen
+        self._create_twinkling_stars()
+        
+        # Title with clean shadow (not messy glow)
+        title_y = self.height * 0.08
+        
+        # Shadow layer (single, offset)
+        self.canvas.create_text(
+            center_x + 3, title_y + 3,
+            text="HAPPY NEW YEAR",
+            font=(FONT_FAMILY, TITLE_SIZE - 10, "bold"),
+            fill="#1a1a2e",
+            tags="ui_shadow"
         )
-        self.ui_instruction = self.canvas.create_text(
-            center_x, self.height * 0.32,
-            text="Initializing...",
-            font=(FONT_FAMILY, SUBTITLE_SIZE + 6, "bold"),
+        
+        # Main title - clean and readable
+        self.ui_title = self.canvas.create_text(
+            center_x, title_y,
+            text="HAPPY NEW YEAR",
+            font=(FONT_FAMILY, TITLE_SIZE - 10, "bold"),
             fill=THEME_TEXT,
             tags="ui"
         )
+        
+        # Large year "2026" with pulsing effect
+        year_y = self.height * 0.20
+        
+        # Year shadow
+        self.canvas.create_text(
+            center_x + 4, year_y + 4,
+            text="2026",
+            font=(FONT_FAMILY, 140, "bold"),
+            fill="#1a1a2e",
+            tags="ui_shadow"
+        )
+        
+        # Year main text (will be animated)
+        self.ui_year = self.canvas.create_text(
+            center_x, year_y,
+            text="2026",
+            font=(FONT_FAMILY, 140, "bold"),
+            fill=THEME_ACCENT,
+            tags="ui_year"
+        )
+        
+        # Decorative sparkle line
+        line_y = self.height * 0.32
+        line_length = 250
+        
+        # Left line with gradient effect (multiple lines)
+        for i, alpha in enumerate([0.3, 0.5, 0.7, 1.0]):
+            offset = i * 60
+            color = THEME_ACCENT if alpha == 1.0 else "#997a00"
+            self.canvas.create_line(
+                center_x - line_length - offset, line_y,
+                center_x - 80 - offset, line_y,
+                fill=color, width=2, tags="ui_deco"
+            )
+        
+        # Center diamond
+        diamond_size = 12
+        self.canvas.create_polygon(
+            center_x, line_y - diamond_size,
+            center_x + diamond_size, line_y,
+            center_x, line_y + diamond_size,
+            center_x - diamond_size, line_y,
+            fill=THEME_ACCENT, outline="", tags="ui_deco"
+        )
+        
+        # Right line
+        for i, alpha in enumerate([0.3, 0.5, 0.7, 1.0]):
+            offset = i * 60
+            color = THEME_ACCENT if alpha == 1.0 else "#997a00"
+            self.canvas.create_line(
+                center_x + 80 + offset, line_y,
+                center_x + line_length + offset, line_y,
+                fill=color, width=2, tags="ui_deco"
+            )
+        
+        # Instruction text
+        self.ui_instruction = self.canvas.create_text(
+            center_x, self.height * 0.38,
+            text="Initializing...",
+            font=(FONT_FAMILY, SUBTITLE_SIZE + 2, "bold"),
+            fill=THEME_TEXT,
+            tags="ui"
+        )
+        
+        # Status text
         self.ui_status = self.canvas.create_text(
-            center_x, self.height * 0.40,
+            center_x, self.height * 0.44,
             text="",
             font=(FONT_FAMILY, STATUS_SIZE),
             fill=THEME_SUCCESS,
             tags="ui"
         )
+        
+        # Countdown display
         self.ui_countdown = self.canvas.create_text(
-            center_x, self.height * 0.52,
+            center_x, self.height * 0.55,
             text="",
-            font=(FONT_FAMILY, COUNTDOWN_SIZE + 20, "bold"),
+            font=(FONT_FAMILY, COUNTDOWN_SIZE + 60, "bold"),
             fill=THEME_ACCENT,
             tags="ui"
         )
-        # Separate text for final message (smaller font)
+        
+        # Countdown message
         self.ui_countdown_msg = self.canvas.create_text(
-            center_x, self.height * 0.52,
+            center_x, self.height * 0.55,
             text="",
             font=(FONT_FAMILY, 72, "bold"),
             fill=THEME_ACCENT,
             state="hidden",
             tags="ui"
         )
+        
+        # Photo display
         self.ui_photo = self.canvas.create_image(
             center_x, self.height * 0.52,
             image=None,
             state="hidden",
             tags="photo"
         )
+        
+        # Setup logos and viewer
+        self._setup_logos_and_viewer()
+    
+    def _create_twinkling_stars(self):
+        """Create decorative twinkling stars around the edges"""
+        star_positions = [
+            (0.05, 0.10), (0.95, 0.10),
+            (0.08, 0.25), (0.92, 0.25),
+            (0.03, 0.40), (0.97, 0.40),
+            (0.06, 0.55), (0.94, 0.55),
+            (0.04, 0.70), (0.96, 0.70),
+            (0.07, 0.85), (0.93, 0.85),
+            (0.15, 0.05), (0.85, 0.05),
+            (0.25, 0.08), (0.75, 0.08),
+        ]
+        
+        for rel_x, rel_y in star_positions:
+            x = self.width * rel_x
+            y = self.height * rel_y
+            size = random.randint(6, 12)
+            color = random.choice([THEME_ACCENT, "#FFFFFF", THEME_ACCENT_2, THEME_GLOW])
+            
+            star_id = self.canvas.create_text(
+                x, y, text="✦",
+                font=("Arial", size, "bold"),
+                fill=color,
+                tags="twinkle_star"
+            )
+            self.twinkling_stars.append({
+                'id': star_id,
+                'base_size': size,
+                'phase': random.uniform(0, 6.28),
+                'speed': random.uniform(0.05, 0.15)
+            })
 
+    def _setup_logos_and_viewer(self):
+        """Setup logos and photo viewer - called from setup_ui_elements"""
         # Initialize zoom viewer and load existing photos
         self.zoom_viewer = PhotoZoomViewer(self.canvas, self.ui_photo, self.width, self.height)
         self.zoom_viewer.load_existing_photos(PHOTO_DIR)
+        
+        # Set callback to update button states when photo changes
+        self.zoom_viewer.on_photo_changed = self._on_gallery_photo_changed
 
         # Logo
         self.logo_image = None
@@ -1463,14 +1901,14 @@ class PhotoBooth:
         if promo_path:
             try:
                 img = Image.open(promo_path)
-                max_size = min(self.width * 0.35, self.height * 0.35)
+                max_size = min(self.width * 0.35, self.height * 0.28)  # Same as main logo
                 ratio = min(max_size / img.width, max_size / img.height)
                 new_w = int(img.width * ratio)
                 new_h = int(img.height * ratio)
                 img = img.resize((new_w, new_h), Image.Resampling.LANCZOS)
                 self.promo_logo_image = ImageTk.PhotoImage(img)
-                promo_x = self.width * 0.92
-                promo_y = self.height * 0.16
+                promo_x = self.width * 0.88  # Mirror of 0.12
+                promo_y = self.height * 0.16  # Same as main logo
                 self.ui_promo = self.canvas.create_image(promo_x, promo_y, image=self.promo_logo_image, tags="promo")
                 self.canvas.tag_lower("promo", "snow")
                 write_log(f"Loaded promotional logo: {promo_path}")
@@ -1478,32 +1916,55 @@ class PhotoBooth:
                 write_log(f"promo logo failed: {e}")
 
     def setup_buttons(self):
-        btn_font = (FONT_FAMILY, BUTTON_SIZE, "bold")
+        btn_font = (FONT_FAMILY, BUTTON_SIZE + 2, "bold")
         
-        # Action buttons for RESULT mode
-        self.btn_delete = Button(self.root, text="🗑️ DELETE", font=btn_font, bg=THEME_DANGER, fg="white",
-                                 activebackground="#c82333", activeforeground="white", relief="flat",
-                                 cursor="hand2", command=self.action_delete, padx=15, pady=8)
-        self.btn_save = Button(self.root, text="☁️ UPLOAD", font=btn_font, bg=THEME_SUCCESS, fg="white",
-                               activebackground="#218838", activeforeground="white", relief="flat",
-                               cursor="hand2", command=self.action_save, padx=15, pady=8)
-        self.btn_print = Button(self.root, text="🖨️ PRINT", font=btn_font, bg=THEME_PRINT, fg="white",
-                                activebackground="#e55a2b", activeforeground="white", relief="flat",
-                                cursor="hand2", command=self.action_print, padx=15, pady=8)
-        self.btn_new = Button(self.root, text="🏠 HOME", font=btn_font, bg=THEME_ACCENT, fg="black",
-                              activebackground="#e6c200", activeforeground="black", relief="flat",
-                              cursor="hand2", command=self.action_go_home, padx=15, pady=8)
+        # Common button style settings
+        btn_style = {
+            "relief": "flat",
+            "cursor": "hand2",
+            "borderwidth": 0,
+            "highlightthickness": 0,
+        }
+        
+        # Action buttons for RESULT mode - Premium styling
+        self.btn_delete = Button(self.root, text="❌  DELETE", font=btn_font, 
+                                 bg=THEME_DANGER, fg="white",
+                                 activebackground="#E8384F", activeforeground="white",
+                                 padx=25, pady=12, **btn_style,
+                                 command=self.action_delete)
+        
+        self.btn_save = Button(self.root, text="☁️  UPLOAD", font=btn_font, 
+                               bg=THEME_SUCCESS, fg="white",
+                               activebackground="#00F5B8", activeforeground="white",
+                               padx=25, pady=12, **btn_style,
+                               command=self.action_save)
+        
+        self.btn_print = Button(self.root, text="🖨️  PRINT", font=btn_font, 
+                                bg=THEME_PRINT, fg="white",
+                                activebackground="#FF8357", activeforeground="white",
+                                padx=25, pady=12, **btn_style,
+                                command=self.action_print)
+        
+        self.btn_new = Button(self.root, text="🏠  HOME", font=btn_font, 
+                              bg=THEME_ACCENT, fg="#0d0d1a",
+                              activebackground="#FFE55C", activeforeground="#0d0d1a",
+                              padx=25, pady=12, **btn_style,
+                              command=self.action_go_home)
         
         # VIEW PHOTOS button for READY mode (home screen)
-        self.btn_view_photos = Button(self.root, text="📸 VIEW PHOTOS", font=btn_font, bg="#9C27B0", fg="white",
-                                      activebackground="#7B1FA2", activeforeground="white", relief="flat",
-                                      cursor="hand2", command=self.action_view_photos, padx=15, pady=8)
+        self.btn_view_photos = Button(self.root, text="📸  VIEW PHOTOS", font=btn_font, 
+                                      bg=THEME_GLOW, fg="white",
+                                      activebackground="#D4A5FF", activeforeground="white",
+                                      padx=25, pady=12, **btn_style,
+                                      command=self.action_view_photos)
         
-        # START button for taking photos (home screen)
-        start_font = (FONT_FAMILY, BUTTON_SIZE + 10, "bold")
-        self.btn_start = Button(self.root, text="📷 TAP TO START", font=start_font, bg=THEME_SUCCESS, fg="white",
-                                activebackground="#218838", activeforeground="white", relief="flat",
-                                cursor="hand2", command=self.start_photo_workflow, padx=30, pady=20)
+        # START button for taking photos (home screen) - Extra large and prominent
+        start_font = (FONT_FAMILY, BUTTON_SIZE + 14, "bold")
+        self.btn_start = Button(self.root, text="📷  TAP TO START", font=start_font, 
+                                bg=THEME_SUCCESS, fg="white",
+                                activebackground="#00F5B8", activeforeground="white",
+                                padx=50, pady=25, **btn_style,
+                                command=self.start_photo_workflow)
         self.hide_buttons()
 
     def init_camera(self):
@@ -1541,13 +2002,17 @@ class PhotoBooth:
     def _camera_keepalive(self):
         """Send a lightweight command to keep the camera connection alive."""
         try:
-            # Use --get-config to query a simple setting - this keeps USB alive
+            # Use --auto-detect which is proven to work for Nikon Z6_3
+            # The --get-config command was timing out for this camera
             result = subprocess.run(
-                ["wsl", "-d", WSL_DISTRO, "gphoto2", "--get-config", "/main/status/serialnumber"],
+                ["wsl", "-d", WSL_DISTRO, "gphoto2", "--auto-detect"],
                 capture_output=True,
-                timeout=5
+                timeout=10  # Increased timeout for more reliability
             )
-            return result.returncode == 0
+            # Check if camera is detected in output
+            if result.returncode == 0 and b"usb:" in result.stdout:
+                return True
+            return False
         except Exception as e:
             write_log(f"Keepalive failed: {e}")
             return False
@@ -1555,24 +2020,36 @@ class PhotoBooth:
     def _monitor_camera_health(self):
         while self.running and getattr(self, 'monitoring_camera', False):
             try:
+                # Skip keepalive if paused (during active capture workflow)
+                if getattr(self, 'pause_keepalive', False):
+                    time.sleep(2)
+                    continue
+                
                 # Keepalive in READY or RESULT mode (not during active capture)
                 if self.mode in ("READY", "RESULT") and self.camera_ready and not getattr(self, 'capture_in_progress', False):
-                    # Keepalive every 30 seconds to prevent USB timeout
+                    # Keepalive every 60 seconds (was 15, but that was too aggressive)
                     current_time = time.time()
-                    if current_time - self.last_keepalive > 30:
+                    if current_time - self.last_keepalive > 60:
                         if self._camera_keepalive():
                             self.last_keepalive = current_time
                             write_log("Keepalive: camera still connected")
                         else:
-                            write_log("Keepalive failed, checking camera...")
-                            if not gphoto2_detect():
-                                write_log("monitor: camera missing, reattaching...")
-                                if fully_automated_camera_setup():
-                                    write_log("Camera reattached successfully")
-                                else:
-                                    self.root.after(0, lambda: self.update_ui_state("ERROR", "Camera lost"))
+                            # Try to acquire lock before reconnecting (non-blocking)
+                            if self.camera_reconnect_lock.acquire(blocking=False):
+                                try:
+                                    write_log("Keepalive failed, auto-reconnecting...")
+                                    # Immediate reconnect attempt
+                                    if fully_automated_camera_setup():
+                                        self.camera_manager.connect_best()
+                                        write_log("Camera auto-reconnected successfully")
+                                    else:
+                                        write_log("Auto-reconnect failed, will retry on next check")
+                                finally:
+                                    self.camera_reconnect_lock.release()
+                            else:
+                                write_log("Keepalive: reconnect skipped (capture in progress)")
                             self.last_keepalive = current_time
-                # Poll every 10 seconds
+                # Poll every 10 seconds (was 5, reduced frequency)
                 time.sleep(10)
             except Exception:
                 time.sleep(10)
@@ -1593,6 +2070,20 @@ class PhotoBooth:
             self.canvas.itemconfig(self.ui_instruction, text="Setting up the countdown...", state="normal")
             self.canvas.itemconfig(self.ui_status, text="⏳ Binding & attaching camera...", state="normal")
         elif state == "READY":
+            # Restore ALL decorative elements when returning to home
+            self.canvas.itemconfig("ui_year", state="normal")
+            self.canvas.itemconfig("ui_shadow", state="normal")
+            self.canvas.itemconfig("ui_deco", state="normal")
+            self.canvas.itemconfig("twinkle_star", state="normal")
+            self.canvas.itemconfig("logo", state="normal")
+            self.canvas.itemconfig("promo", state="normal")
+            if hasattr(self, 'ui_year'):
+                self.canvas.itemconfig(self.ui_year, state="normal")
+            # Restore logos to original top position
+            if hasattr(self, 'ui_logo'):
+                self.canvas.coords(self.ui_logo, self.width * 0.12, self.height * 0.16)
+            if hasattr(self, 'ui_promo'):
+                self.canvas.coords(self.ui_promo, self.width * 0.88, self.height * 0.16)
             # Clean home screen - no status text, just buttons
             self.canvas.itemconfig(self.ui_instruction, text="", state="hidden")
             self.canvas.itemconfig(self.ui_status, text="", state="hidden")
@@ -1600,10 +2091,35 @@ class PhotoBooth:
             self.btn_start.place(relx=0.5, rely=0.5, anchor="center")
             self.btn_view_photos.place(relx=0.5, rely=0.92, anchor="center")
         elif state == "COUNTDOWN":
-            self.canvas.itemconfig(self.ui_countdown, state="normal")
-            self.canvas.itemconfig(self.ui_status, text="Get ready!", fill=THEME_ACCENT, state="normal")
-        elif state == "RESULT":
+            # Hide year and title during countdown for cleaner look
+            self.canvas.itemconfig("ui_year", state="hidden")
+            self.canvas.itemconfig("ui_shadow", state="hidden")
+            self.canvas.itemconfig("ui_deco", state="hidden")
+            self.canvas.itemconfig("twinkle_star", state="hidden")
             self.canvas.itemconfig(self.ui_title, state="hidden")
+            if hasattr(self, 'ui_year'):
+                self.canvas.itemconfig(self.ui_year, state="hidden")
+            self.canvas.itemconfig(self.ui_countdown, state="normal")
+            # Move status text to instruction position (higher up)
+            self.canvas.itemconfig(self.ui_instruction, text="✨ Get Ready! ✨", fill=THEME_ACCENT, state="normal")
+        elif state == "RESULT":
+            # Hide decorative elements but keep logos (repositioned)
+            self.canvas.itemconfig(self.ui_title, state="hidden")
+            self.canvas.itemconfig("ui_year", state="hidden")
+            self.canvas.itemconfig("ui_shadow", state="hidden")
+            self.canvas.itemconfig("ui_deco", state="hidden")
+            self.canvas.itemconfig("twinkle_star", state="hidden")
+            if hasattr(self, 'ui_year'):
+                self.canvas.itemconfig(self.ui_year, state="hidden")
+            
+            # Move logos to just below header for gallery view
+            if hasattr(self, 'ui_logo'):
+                self.canvas.coords(self.ui_logo, self.width * 0.10, self.height * 0.22)
+                self.canvas.itemconfig("logo", state="normal")
+            if hasattr(self, 'ui_promo'):
+                self.canvas.coords(self.ui_promo, self.width * 0.90, self.height * 0.22)
+                self.canvas.itemconfig("promo", state="normal")
+            
             self.canvas.itemconfig(self.ui_photo, state="normal")
             # Hide snow for cleaner photo view
             self.canvas.itemconfig("snow", state="hidden")
@@ -1619,11 +2135,32 @@ class PhotoBooth:
 
     def show_buttons(self):
         btn_y = 0.92
+        
+        # Check if current photo is already uploaded
+        is_uploaded = False
+        if self.current_photo_path and os.path.exists(self.current_photo_path):
+            filename = os.path.basename(self.current_photo_path)
+            dest = os.path.join(DRIVE_DIR, filename)
+            is_uploaded = os.path.exists(dest)
+        
+        # Update upload button based on status
+        if is_uploaded:
+            self.btn_save.config(text="☁️ ✓ DONE", bg="#2D6A4F", fg="white", state="disabled")
+        else:
+            self.btn_save.config(text="☁️  UPLOAD", bg=THEME_SUCCESS, fg="white", state="normal")
+        
         # 4 buttons evenly spaced
         self.btn_delete.place(relx=0.12, rely=btn_y, anchor="center")
         self.btn_save.place(relx=0.37, rely=btn_y, anchor="center")
         self.btn_print.place(relx=0.62, rely=btn_y, anchor="center")
         self.btn_new.place(relx=0.87, rely=btn_y, anchor="center")
+
+    def _on_gallery_photo_changed(self, new_photo_path: str):
+        """Called when user navigates to a different photo in gallery"""
+        self.current_photo_path = new_photo_path
+        # Refresh button states for the new photo
+        if self.mode == "RESULT":
+            self.show_buttons()
 
     def hide_buttons(self):
         for btn in [self.btn_delete, self.btn_save, self.btn_print, self.btn_new, self.btn_view_photos, self.btn_start]:
@@ -1633,22 +2170,74 @@ class PhotoBooth:
             self.zoom_viewer.hide_control_buttons()
 
     def on_canvas_click(self, event):
-        # Ignore clicks in the bottom area where the VIEW PHOTOS button is (rely=0.92)
-        button_zone_y = self.height * 0.85  # Bottom 15% is button zone
-        if event.y > button_zone_y:
-            return  # Let buttons handle clicks in this zone
-        
-        if self.mode == "READY" and self.camera_ready and not self.capture_in_progress:
-            self.start_photo_workflow()
-        elif self.mode == "ERROR":
+        """Handle canvas clicks - only for error retry, NOT for photo capture"""
+        # Photo capture is ONLY triggered by the TAP TO START button
+        # Canvas click is only used for error retry
+        if self.mode == "ERROR":
             self.retry_camera()
 
     def start_photo_workflow(self):
         if not self.camera_ready:
             return
-        self.capture_in_progress = True
-        self.update_ui_state("COUNTDOWN")
-        threading.Thread(target=self._countdown_and_capture, daemon=True).start()
+        
+        self.update_ui_state("COUNTDOWN")  # Show countdown UI
+        self.root.update()
+        
+        # Check if we need to reconnect or can skip it
+        # If keepalive succeeded recently (within 90 seconds), skip reconnect
+        time_since_keepalive = time.time() - getattr(self, 'last_keepalive', 0)
+        if time_since_keepalive < 90 and self.camera_manager.is_connected():
+            write_log(f"Skipping reconnect (keepalive {time_since_keepalive:.0f}s ago)")
+            # Start countdown directly
+            threading.Thread(target=self._quick_capture, daemon=True).start()
+        else:
+            write_log("Force reconnecting camera before capture...")
+            # Run reconnect in background then start countdown
+            threading.Thread(target=self._reconnect_and_capture, daemon=True).start()
+    
+    def _quick_capture(self):
+        """Start capture without reconnecting (camera already verified)"""
+        try:
+            self.pause_keepalive = True
+            self.capture_in_progress = True
+            self._countdown_and_capture()
+        except Exception as e:
+            write_log(f"_quick_capture error: {e}")
+            self.root.after(0, self.capture_failed)
+        finally:
+            self.pause_keepalive = False
+    
+    def _reconnect_and_capture(self):
+        """Reconnect camera and then start capture"""
+        try:
+            # Pause keepalive to prevent race conditions
+            self.pause_keepalive = True
+            self.capture_in_progress = True
+            
+            # Show "Connecting" message instead of countdown
+            self.root.after(0, lambda: self.canvas.itemconfig(self.ui_instruction, text="📷 Connecting Camera...", fill=THEME_TEXT))
+            self.root.after(0, lambda: self.canvas.itemconfig(self.ui_countdown, text="", state="hidden"))
+            
+            # Acquire lock to prevent any other reconnection attempts
+            with self.camera_reconnect_lock:
+                # Force reattach to ensure fresh USB connection
+                if fully_automated_camera_setup():
+                    self.camera_manager.connect_best()
+                    write_log("Camera reconnected for capture")
+                else:
+                    write_log("Camera reconnect warning - proceeding anyway")
+            
+            # Now show "Get Ready" and start countdown
+            self.root.after(0, lambda: self.canvas.itemconfig(self.ui_instruction, text="✨ Get Ready! ✨", fill=THEME_ACCENT))
+            self.root.after(0, lambda: self.canvas.itemconfig(self.ui_countdown, state="normal"))
+            
+            self._countdown_and_capture()
+        except Exception as e:
+            write_log(f"_reconnect_and_capture error: {e}")
+            self.root.after(0, self.capture_failed)
+        finally:
+            # Resume keepalive after capture workflow completes
+            self.pause_keepalive = False
 
     def _countdown_and_capture(self):
         try:
@@ -1659,12 +2248,42 @@ class PhotoBooth:
             self.root.after(0, lambda: self.canvas.itemconfig(self.ui_countdown, state="hidden"))
             self.root.after(0, lambda: self.canvas.itemconfig(self.ui_countdown_msg, text="LOOK AT THE CAMERA!", state="normal"))
             write_log("Countdown complete, capturing photo...")
+            
+            # Quick camera check before capture - reconnect if needed
+            if not self.camera_manager.is_connected():
+                write_log("Camera not responding before capture, attempting reconnect...")
+                if fully_automated_camera_setup():
+                    self.camera_manager.connect_best()
+                    write_log("Camera reconnected successfully")
+                else:
+                    write_log("Camera reconnect failed")
 
             filename = f"IMG_{int(time.time())}.jpg"
             save_path = os.path.join(os.path.join(TEMP_DIR, "captures"), filename)
             write_log(f"Saving photo to: {save_path}")
-            ok = self.camera_manager.capture(save_path)
-            write_log(f"Capture result: {ok}")
+            
+            # Try capture with automatic retry on failure
+            ok = False
+            for attempt in range(3):  # Up to 3 attempts
+                if attempt > 0:
+                    write_log(f"Retry attempt {attempt + 1}/3 - reconnecting camera...")
+                    self.root.after(0, lambda: self.canvas.itemconfig(self.ui_countdown_msg, text="Reconnecting camera..."))
+                    # Force reconnect
+                    if fully_automated_camera_setup():
+                        self.camera_manager.connect_best()
+                        write_log("Camera reconnected for retry")
+                        time.sleep(1)  # Brief pause after reconnect
+                    else:
+                        write_log("Reconnect failed, trying capture anyway")
+                
+                ok = self.camera_manager.capture(save_path)
+                write_log(f"Capture attempt {attempt + 1} result: {ok}")
+                if ok:
+                    break
+                elif attempt < 2:
+                    write_log("Capture failed, will retry...")
+                    time.sleep(2)  # Wait before retry
+            
             if ok:
                 write_log(f"Photo saved successfully, moving to gallery...")
                 # Move photo from temp to permanent gallery location
@@ -1686,7 +2305,7 @@ class PhotoBooth:
                 self.current_photo_path = backup_path
                 self.root.after(0, self._show_captured_photo)
             else:
-                write_log("Capture failed, showing error...")
+                write_log("All capture attempts failed, showing error...")
                 self.root.after(0, self.capture_failed)
         except Exception as e:
             write_log(f"_countdown_and_capture exception: {e}")
@@ -1741,12 +2360,12 @@ class PhotoBooth:
             photo_to_delete = self.current_photo_path
         
         if photo_to_delete and os.path.exists(photo_to_delete):
-            # Show confirmation dialog
-            from tkinter import messagebox
-            confirm = messagebox.askyesno(
-                "Confirm Delete",
-                f"Are you sure you want to delete this photo?",
-                icon='warning'
+            # Show themed confirmation dialog
+            confirm = ThemedDialog.ask_yes_no(
+                self.root,
+                "Delete Photo?",
+                "Are you sure you want to delete this photo?",
+                "🗑️"
             )
             if confirm:
                 # Show deleting feedback
@@ -1754,8 +2373,16 @@ class PhotoBooth:
                 self.root.update()
                 
                 try:
+                    # Delete local file
                     os.remove(photo_to_delete)
                     write_log(f"Deleted photo: {photo_to_delete}")
+                    
+                    # Also delete from cloud if it was uploaded
+                    filename = os.path.basename(photo_to_delete)
+                    cloud_path = os.path.join(DRIVE_DIR, filename)
+                    if os.path.exists(cloud_path):
+                        os.remove(cloud_path)
+                        write_log(f"Deleted from cloud: {cloud_path}")
                 except Exception as e:
                     write_log(f"Delete error: {e}")
                 
@@ -1772,6 +2399,8 @@ class PhotoBooth:
                         self.zoom_viewer.current_idx = new_idx
                         self.current_photo_path = self.zoom_viewer.photos[new_idx]
                         self.zoom_viewer.load_photo(self.current_photo_path)
+                        # Refresh button states for the new photo
+                        self.show_buttons()
                         return  # Stay in RESULT mode showing next photo
                 
                 # No more photos, go home
@@ -1814,6 +2443,31 @@ class PhotoBooth:
         self.update_ui_state("READY", self.camera_manager.get_name())
 
     def action_save(self):
+        # Check if photo already uploaded (exists in DRIVE_DIR)
+        if self.current_photo_path and os.path.exists(self.current_photo_path):
+            filename = os.path.basename(self.current_photo_path)
+            dest = os.path.join(DRIVE_DIR, filename)
+            
+            if os.path.exists(dest):
+                # Already uploaded - show message
+                ThemedDialog.show_message(
+                    self.root,
+                    "Already Uploaded",
+                    "This photo has already been uploaded to cloud!",
+                    "☁️"
+                )
+                return
+        
+        # Show confirmation dialog
+        confirm = ThemedDialog.ask_yes_no(
+            self.root,
+            "Upload to Cloud?",
+            "Do you want to upload this photo?",
+            "☁️"
+        )
+        if not confirm:
+            return
+        
         self.btn_save.config(text="☁️ UPLOADING...", state="disabled")
         threading.Thread(target=self._save_thread, daemon=True).start()
 
@@ -1831,21 +2485,32 @@ class PhotoBooth:
         self.root.after(0, lambda: self._save_complete(success))
 
     def _save_complete(self, success: bool):
-        self.btn_save.config(text="☁️ UPLOAD", state="normal")
-        from tkinter import messagebox
+        # Update button to show done status
         if success:
-            messagebox.showinfo("Upload Complete", "✓ Photo uploaded to Google Drive!\n\nYou can take another photo or continue viewing.")
+            self.btn_save.config(text="☁️ ✓ DONE", bg="#2D6A4F", fg="white", state="disabled")
+            ThemedDialog.show_message(
+                self.root,
+                "Upload Complete",
+                "Photo uploaded to Google Drive!",
+                "✓"
+            )
         else:
-            messagebox.showerror("Upload Failed", "✗ Could not upload photo.\nPlease check your connection and try again.")
-        # Stay on current photo - don't go to home
+            self.btn_save.config(text="☁️  UPLOAD", bg=THEME_SUCCESS, fg="white", state="normal")
+            ThemedDialog.show_message(
+                self.root,
+                "Upload Failed",
+                "Could not upload photo. Check connection.",
+                "✗"
+            )
+        # Stay on current photo
 
     def action_print(self):
-        # Confirm before printing since it costs money
-        from tkinter import messagebox
-        confirm = messagebox.askyesno(
-            "Confirm Print",
-            "🖨️ Are you sure you want to print this photo?\n\nPrinting costs money!",
-            icon='question'
+        # Confirm before printing
+        confirm = ThemedDialog.ask_yes_no(
+            self.root,
+            "Print Photo?",
+            "Do you want to print this photo?",
+            "🖨️"
         )
         if not confirm:
             return
@@ -1854,43 +2519,108 @@ class PhotoBooth:
         threading.Thread(target=self._print_thread, daemon=True).start()
 
     def _print_thread(self):
+        global _print_job_counter
+        _print_job_counter += 1
+        job_number = _print_job_counter
         success = False
+        
         try:
             if self.current_photo_path and os.path.exists(self.current_photo_path):
                 filename = os.path.basename(self.current_photo_path)
                 dest = os.path.join(DRIVE_DIR, filename)
                 shutil.copy2(self.current_photo_path, dest)
-                write_log(f"saved to drive (print path): {dest}")
+                write_log(f"[Print #{job_number}] Saved to drive: {dest}")
+                
                 try:
                     printer_name = win32print.GetDefaultPrinter()
+                    write_log(f"[Print #{job_number}] Printer: {printer_name}")
+                    
                     img = Image.open(self.current_photo_path)
+                    img_width, img_height = img.size
+                    write_log(f"[Print #{job_number}] Image size: {img_width}x{img_height} pixels")
+                    
                     hdc = win32ui.CreateDC()
                     hdc.CreatePrinterDC(printer_name)
-                    hdc.StartDoc("PhotoBooth Print")
+                    
+                    # Get printer capabilities
+                    # HORZRES (8) = width in pixels, VERTRES (10) = height in pixels
+                    # LOGPIXELSX (88) = DPI horizontal, LOGPIXELSY (90) = DPI vertical
+                    printable_width = hdc.GetDeviceCaps(8)   # HORZRES
+                    printable_height = hdc.GetDeviceCaps(10)  # VERTRES
+                    printer_dpi_x = hdc.GetDeviceCaps(88)     # LOGPIXELSX
+                    printer_dpi_y = hdc.GetDeviceCaps(90)     # LOGPIXELSY
+                    
+                    write_log(f"[Print #{job_number}] Printable area: {printable_width}x{printable_height} pixels at {printer_dpi_x}x{printer_dpi_y} DPI")
+                    
+                    # Calculate margins in printer pixels
+                    margin_x = int(PRINT_MARGIN_INCHES * printer_dpi_x)
+                    margin_y = int(PRINT_MARGIN_INCHES * printer_dpi_y)
+                    
+                    # Available print area after margins
+                    available_width = printable_width - (2 * margin_x)
+                    available_height = printable_height - (2 * margin_y)
+                    
+                    if PRINT_FIT_TO_PAGE:
+                        # Scale image to fit within available area while maintaining aspect ratio
+                        img_aspect = img_width / img_height
+                        area_aspect = available_width / available_height
+                        
+                        if img_aspect > area_aspect:
+                            # Image is wider than available area - fit to width
+                            dest_width = available_width
+                            dest_height = int(available_width / img_aspect)
+                        else:
+                            # Image is taller than available area - fit to height
+                            dest_height = available_height
+                            dest_width = int(available_height * img_aspect)
+                    else:
+                        # Use original size scaled to printer DPI
+                        # Assume image is 300 DPI if not specified
+                        dest_width = int(img_width * printer_dpi_x / 300)
+                        dest_height = int(img_height * printer_dpi_y / 300)
+                    
+                    # Calculate position (centered or top-left)
+                    if PRINT_CENTER_ON_PAGE:
+                        x_offset = margin_x + (available_width - dest_width) // 2
+                        y_offset = margin_y + (available_height - dest_height) // 2
+                    else:
+                        x_offset = margin_x
+                        y_offset = margin_y
+                    
+                    write_log(f"[Print #{job_number}] Output: {dest_width}x{dest_height} at ({x_offset},{y_offset})")
+                    
+                    # Start print job
+                    hdc.StartDoc(f"PhotoBooth Print #{job_number}")
                     hdc.StartPage()
+                    
                     dib = ImageWin.Dib(img)
-                    (px, py) = img.size
-                    hdc_rect = (0, 0, px, py)
+                    hdc_rect = (x_offset, y_offset, x_offset + dest_width, y_offset + dest_height)
                     dib.draw(hdc.GetHandleOutput(), hdc_rect)
+                    
                     hdc.EndPage()
                     hdc.EndDoc()
                     hdc.DeleteDC()
-                    write_log("printed")
+                    
+                    write_log(f"[Print #{job_number}] ✓ Print job sent successfully!")
                     success = True
+                    
                 except Exception as e:
-                    write_log(f"print error: {e}")
+                    write_log(f"[Print #{job_number}] ERROR: {e}")
         except Exception as e:
-            write_log(f"save/print error: {e}")
+            write_log(f"[Print #{job_number}] Save/print error: {e}")
+        
         self.root.after(0, lambda: self._print_complete(success))
 
     def _print_complete(self, success: bool):
-        self.btn_print.config(text="🖨️ PRINT", state="normal")
-        from tkinter import messagebox
         if success:
-            messagebox.showinfo("Print Sent", "✓ Photo sent to printer!\n\nPlease check your printer.")
+            # Show brief success on button, then reset
+            self.btn_print.config(text="🖨️ ✓ SENT!", bg="#2D6A4F", state="disabled")
+            self.root.after(2000, lambda: self.btn_print.config(text="🖨️  PRINT", bg=THEME_PRINT, state="normal"))
         else:
-            messagebox.showerror("Print Failed", "✗ Could not print photo.\nPlease check your printer connection.")
-        # Stay on current photo - don't go to home
+            # Show brief error on button, then reset
+            self.btn_print.config(text="🖨️ ✗ FAILED", bg=THEME_DANGER, state="disabled")
+            self.root.after(2000, lambda: self.btn_print.config(text="🖨️  PRINT", bg=THEME_PRINT, state="normal"))
+        # Stay on current photo - no dialog interruption
 
     def retry_camera(self):
         now = time.time()
@@ -1910,11 +2640,47 @@ class PhotoBooth:
     def animate(self):
         if not self.running:
             return
-        # Pause snow animation during RESULT mode for better performance
+        
+        # Increment animation frame
+        self.animation_frame += 1
+        
+        # Pause animations during RESULT mode for better performance
         if self.mode != "RESULT":
+            # Update snowflakes
             for flake in self.snowflakes:
                 flake.update()
             self.canvas.tag_lower("snow")
+            
+            # Pulsing year color animation (every 15 frames)
+            if self.animation_frame % 15 == 0 and hasattr(self, 'ui_year'):
+                import math
+                # Cycle between gold colors
+                colors = [THEME_ACCENT, "#FFA500", "#FF8C00", "#FFB347", THEME_ACCENT_2, THEME_ACCENT]
+                color_idx = (self.animation_frame // 15) % len(colors)
+                try:
+                    self.canvas.itemconfig(self.ui_year, fill=colors[color_idx])
+                except Exception:
+                    pass
+            
+            # Twinkling stars animation (every 3 frames for smooth effect)
+            if self.animation_frame % 3 == 0 and hasattr(self, 'twinkling_stars'):
+                import math
+                for star in self.twinkling_stars:
+                    try:
+                        # Calculate pulsing size
+                        phase = star['phase'] + self.animation_frame * star['speed']
+                        scale = 0.6 + 0.4 * abs(math.sin(phase))
+                        new_size = int(star['base_size'] * scale)
+                        new_size = max(4, min(16, new_size))
+                        
+                        # Update font size for pulsing effect
+                        self.canvas.itemconfig(
+                            star['id'],
+                            font=("Arial", new_size, "bold")
+                        )
+                    except Exception:
+                        pass
+        
         self.root.after(ANIMATION_FPS, self.animate)
 
     def _zoom_in(self):
@@ -1966,6 +2732,9 @@ def main():
     
     # Elevate to admin once at startup
     ensure_elevated()
+    
+    # Disable USB power management that can disconnect the camera
+    disable_usb_selective_suspend()
     
     print("Camera will auto-bind, auto-attach, and auto-detect.")
     print("(Press ESC to exit, F5 to retry camera)")
