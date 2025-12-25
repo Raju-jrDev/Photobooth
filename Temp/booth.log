@@ -1,0 +1,2285 @@
+2025-12-24 15:42:53 Not elevated; requesting UAC for admin mode...
+2025-12-24 15:42:54 Relaunched with elevation; exiting non-admin instance...
+2025-12-24 15:42:54 ✓ Running with administrator privileges
+2025-12-24 15:42:54 Loaded 26 existing photos from gallery
+2025-12-24 15:42:54 Loaded promotional logo: c:\Users\pusap\OneDrive\Desktop\project\Photobooth\promo.png
+2025-12-24 15:42:55 
+============================================================
+2025-12-24 15:42:55 STARTING FULLY AUTOMATED CAMERA SETUP
+2025-12-24 15:42:55 ============================================================
+2025-12-24 15:42:55 
+Step 1: Ensuring WSL is running...
+2025-12-24 15:42:56 
+Step 2: Finding camera BusID via usbipd...
+2025-12-24 15:42:56 Found camera: 1-7    04b0:0454  Z6_3                                                          Attached
+2025-12-24 15:42:56 Found camera at BusID: 1-7
+2025-12-24 15:42:56 
+Step 3: Checking camera share state...
+2025-12-24 15:42:56 Current state: attached
+2025-12-24 15:42:56 
+Step 4: Attaching camera to WSL...
+2025-12-24 15:42:56 
+Step 5: Verifying camera with gphoto2 --auto-detect...
+2025-12-24 15:42:57 gphoto2 --auto-detect rc=0
+2025-12-24 15:42:57 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:42:57 gphoto2 detected camera!
+2025-12-24 15:42:57 
+============================================================
+2025-12-24 15:42:57 ✓ CAMERA SETUP COMPLETE AND VERIFIED
+2025-12-24 15:42:57 ============================================================
+
+2025-12-24 15:42:57 WSLGPhotoCamera: connecting...
+2025-12-24 15:42:57 [wsl] gphoto2 --auto-detect
+2025-12-24 15:42:57 ✓ Camera connected: USB PTP Class Camera on usb:001,002
+2025-12-24 15:42:58 WSLGPhotoCamera: connecting...
+2025-12-24 15:42:58 [wsl] gphoto2 --auto-detect
+2025-12-24 15:42:59 ✓ Camera connected: USB PTP Class Camera on usb:001,002
+2025-12-24 15:43:03 Countdown complete, capturing photo...
+2025-12-24 15:43:03 Saving photo to: c:\Users\pusap\OneDrive\Desktop\project\Photobooth\Temp\captures\IMG_1766612583.jpg
+2025-12-24 15:43:03 capture: starting capture to c:\Users\pusap\OneDrive\Desktop\project\Photobooth\Temp\captures\IMG_1766612583.jpg
+2025-12-24 15:43:03 capture: WSL path = /mnt/c/Users/pusap/OneDrive/Desktop/project/Photobooth/Temp/captures/IMG_1766612583.jpg
+2025-12-24 15:43:03 capture: running gphoto2 --port 'usb:001,002' --capture-image-and-download --filename '/mnt/c/Users/pusap/OneDrive/Desktop/project/Photobooth/Temp/captures/IMG_1766612583.jpg' 2>&1
+2025-12-24 15:43:04 capture: file appeared after 0.8s
+2025-12-24 15:43:04 capture: file detected, size = 5798392 bytes
+2025-12-24 15:43:04 capture: file detected, size = 5798392 bytes
+2025-12-24 15:43:05 capture: file detected, size = 5798392 bytes
+2025-12-24 15:43:05 capture: file complete, size = 5798392 bytes, total time = 1.3s
+2025-12-24 15:43:05 capture: SUCCESS (fast path)
+2025-12-24 15:43:05 Capture result: True
+2025-12-24 15:43:05 Photo saved successfully, moving to gallery...
+2025-12-24 15:43:05 Photo moved to gallery: c:\Users\pusap\OneDrive\Desktop\project\Photobooth\Photos\IMG_1766612583.jpg
+2025-12-24 15:43:05 _show_captured_photo called
+2025-12-24 15:43:05 Loading photo from: c:\Users\pusap\OneDrive\Desktop\project\Photobooth\Photos\IMG_1766612583.jpg
+2025-12-24 15:43:05 Using zoom_viewer to load photo...
+2025-12-24 15:43:05 zoom_viewer.load_photo completed
+2025-12-24 15:43:05 Updating UI state to RESULT...
+2025-12-24 15:43:05 Photo display complete!
+2025-12-24 15:43:26 Keepalive failed, checking camera...
+2025-12-24 15:43:26 gphoto2 --auto-detect rc=0
+2025-12-24 15:43:26 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:43:26 gphoto2 detected camera!
+2025-12-24 15:43:59 Keepalive failed, checking camera...
+2025-12-24 15:43:59 gphoto2 --auto-detect rc=0
+2025-12-24 15:43:59 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:43:59 gphoto2 detected camera!
+2025-12-24 15:44:31 Keepalive failed, checking camera...
+2025-12-24 15:44:31 gphoto2 --auto-detect rc=0
+2025-12-24 15:44:31 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:44:31 gphoto2 detected camera!
+2025-12-24 15:44:47 Not elevated; requesting UAC for admin mode...
+2025-12-24 15:44:48 Relaunched with elevation; exiting non-admin instance...
+2025-12-24 15:44:48 ✓ Running with administrator privileges
+2025-12-24 15:44:49 Loaded 27 existing photos from gallery
+2025-12-24 15:44:49 Loaded promotional logo: c:\Users\pusap\OneDrive\Desktop\project\Photobooth\promo.png
+2025-12-24 15:44:49 
+============================================================
+2025-12-24 15:44:49 STARTING FULLY AUTOMATED CAMERA SETUP
+2025-12-24 15:44:49 ============================================================
+2025-12-24 15:44:49 
+Step 1: Ensuring WSL is running...
+2025-12-24 15:44:51 
+Step 2: Finding camera BusID via usbipd...
+2025-12-24 15:44:51 Found camera: 1-7    04b0:0454  Z6_3                                                          Attached
+2025-12-24 15:44:51 Found camera at BusID: 1-7
+2025-12-24 15:44:51 
+Step 3: Checking camera share state...
+2025-12-24 15:44:51 Current state: attached
+2025-12-24 15:44:51 
+Step 4: Attaching camera to WSL...
+2025-12-24 15:44:51 
+Step 5: Verifying camera with gphoto2 --auto-detect...
+2025-12-24 15:44:51 gphoto2 --auto-detect rc=0
+2025-12-24 15:44:51 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:44:51 gphoto2 detected camera!
+2025-12-24 15:44:51 
+============================================================
+2025-12-24 15:44:51 ✓ CAMERA SETUP COMPLETE AND VERIFIED
+2025-12-24 15:44:51 ============================================================
+
+2025-12-24 15:44:51 WSLGPhotoCamera: connecting...
+2025-12-24 15:44:51 [wsl] gphoto2 --auto-detect
+2025-12-24 15:44:51 ✓ Camera connected: USB PTP Class Camera on usb:001,002
+2025-12-24 15:44:53 WSLGPhotoCamera: connecting...
+2025-12-24 15:44:53 [wsl] gphoto2 --auto-detect
+2025-12-24 15:44:53 ✓ Camera connected: USB PTP Class Camera on usb:001,002
+2025-12-24 15:45:21 Keepalive failed, checking camera...
+2025-12-24 15:45:21 gphoto2 --auto-detect rc=0
+2025-12-24 15:45:21 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:45:21 gphoto2 detected camera!
+2025-12-24 15:45:53 Keepalive failed, checking camera...
+2025-12-24 15:45:53 gphoto2 --auto-detect rc=0
+2025-12-24 15:45:53 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:45:53 gphoto2 detected camera!
+2025-12-24 15:46:25 Keepalive failed, checking camera...
+2025-12-24 15:46:25 gphoto2 --auto-detect rc=0
+2025-12-24 15:46:25 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:46:25 gphoto2 detected camera!
+2025-12-24 15:46:57 Keepalive failed, checking camera...
+2025-12-24 15:46:57 gphoto2 --auto-detect rc=0
+2025-12-24 15:46:57 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:46:57 gphoto2 detected camera!
+2025-12-24 15:47:29 Keepalive failed, checking camera...
+2025-12-24 15:47:29 gphoto2 --auto-detect rc=0
+2025-12-24 15:47:29 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:47:29 gphoto2 detected camera!
+2025-12-24 15:48:01 Keepalive failed, checking camera...
+2025-12-24 15:48:01 gphoto2 --auto-detect rc=0
+2025-12-24 15:48:01 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:48:01 gphoto2 detected camera!
+2025-12-24 15:48:33 Keepalive failed, checking camera...
+2025-12-24 15:48:33 gphoto2 --auto-detect rc=0
+2025-12-24 15:48:33 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:48:33 gphoto2 detected camera!
+2025-12-24 15:49:05 Keepalive failed, checking camera...
+2025-12-24 15:49:05 gphoto2 --auto-detect rc=0
+2025-12-24 15:49:05 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:49:05 gphoto2 detected camera!
+2025-12-24 15:49:37 Keepalive failed, checking camera...
+2025-12-24 15:49:38 gphoto2 --auto-detect rc=0
+2025-12-24 15:49:38 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:49:38 gphoto2 detected camera!
+2025-12-24 15:50:09 Keepalive failed, checking camera...
+2025-12-24 15:50:09 gphoto2 --auto-detect rc=0
+2025-12-24 15:50:09 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:50:09 gphoto2 detected camera!
+2025-12-24 15:50:41 Keepalive failed, checking camera...
+2025-12-24 15:50:41 gphoto2 --auto-detect rc=0
+2025-12-24 15:50:41 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:50:41 gphoto2 detected camera!
+2025-12-24 15:51:13 Keepalive failed, checking camera...
+2025-12-24 15:51:13 gphoto2 --auto-detect rc=0
+2025-12-24 15:51:13 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:51:13 gphoto2 detected camera!
+2025-12-24 15:51:45 Keepalive failed, checking camera...
+2025-12-24 15:51:45 gphoto2 --auto-detect rc=0
+2025-12-24 15:51:45 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:51:45 gphoto2 detected camera!
+2025-12-24 15:52:17 Keepalive failed, checking camera...
+2025-12-24 15:52:17 gphoto2 --auto-detect rc=0
+2025-12-24 15:52:17 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:52:17 gphoto2 detected camera!
+2025-12-24 15:52:49 Keepalive failed, checking camera...
+2025-12-24 15:52:49 gphoto2 --auto-detect rc=0
+2025-12-24 15:52:49 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:52:49 gphoto2 detected camera!
+2025-12-24 15:53:21 Keepalive failed, checking camera...
+2025-12-24 15:53:21 gphoto2 --auto-detect rc=0
+2025-12-24 15:53:21 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:53:21 gphoto2 detected camera!
+2025-12-24 15:53:53 Keepalive failed, checking camera...
+2025-12-24 15:53:53 gphoto2 --auto-detect rc=0
+2025-12-24 15:53:53 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:53:53 gphoto2 detected camera!
+2025-12-24 15:54:25 Keepalive failed, checking camera...
+2025-12-24 15:54:25 gphoto2 --auto-detect rc=0
+2025-12-24 15:54:25 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:54:25 gphoto2 detected camera!
+2025-12-24 15:54:57 Keepalive failed, checking camera...
+2025-12-24 15:54:57 gphoto2 --auto-detect rc=0
+2025-12-24 15:54:57 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:54:57 gphoto2 detected camera!
+2025-12-24 15:55:29 Keepalive failed, checking camera...
+2025-12-24 15:55:29 gphoto2 --auto-detect rc=0
+2025-12-24 15:55:29 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:55:29 gphoto2 detected camera!
+2025-12-24 15:56:01 Keepalive failed, checking camera...
+2025-12-24 15:56:01 gphoto2 --auto-detect rc=0
+2025-12-24 15:56:01 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:56:01 gphoto2 detected camera!
+2025-12-24 15:56:33 Keepalive failed, checking camera...
+2025-12-24 15:56:33 gphoto2 --auto-detect rc=0
+2025-12-24 15:56:33 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:56:33 gphoto2 detected camera!
+2025-12-24 15:57:05 Keepalive failed, checking camera...
+2025-12-24 15:57:05 gphoto2 --auto-detect rc=0
+2025-12-24 15:57:05 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:57:05 gphoto2 detected camera!
+2025-12-24 15:57:37 Keepalive failed, checking camera...
+2025-12-24 15:57:37 gphoto2 --auto-detect rc=0
+2025-12-24 15:57:37 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:57:37 gphoto2 detected camera!
+2025-12-24 15:58:10 Keepalive failed, checking camera...
+2025-12-24 15:58:10 gphoto2 --auto-detect rc=0
+2025-12-24 15:58:10 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:58:10 gphoto2 detected camera!
+2025-12-24 15:58:41 Keepalive failed, checking camera...
+2025-12-24 15:58:41 gphoto2 --auto-detect rc=0
+2025-12-24 15:58:41 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:58:41 gphoto2 detected camera!
+2025-12-24 15:59:14 Keepalive failed, checking camera...
+2025-12-24 15:59:14 gphoto2 --auto-detect rc=0
+2025-12-24 15:59:14 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:59:14 gphoto2 detected camera!
+2025-12-24 15:59:46 Keepalive failed, checking camera...
+2025-12-24 15:59:46 gphoto2 --auto-detect rc=0
+2025-12-24 15:59:46 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 15:59:46 gphoto2 detected camera!
+2025-12-24 16:00:18 Keepalive failed, checking camera...
+2025-12-24 16:00:18 gphoto2 --auto-detect rc=0
+2025-12-24 16:00:18 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:00:18 gphoto2 detected camera!
+2025-12-24 16:00:50 Keepalive failed, checking camera...
+2025-12-24 16:00:50 gphoto2 --auto-detect rc=0
+2025-12-24 16:00:50 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:00:50 gphoto2 detected camera!
+2025-12-24 16:01:22 Keepalive failed, checking camera...
+2025-12-24 16:01:22 gphoto2 --auto-detect rc=0
+2025-12-24 16:01:22 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:01:22 gphoto2 detected camera!
+2025-12-24 16:01:54 Keepalive failed, checking camera...
+2025-12-24 16:01:54 gphoto2 --auto-detect rc=0
+2025-12-24 16:01:54 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:01:54 gphoto2 detected camera!
+2025-12-24 16:02:26 Keepalive failed, checking camera...
+2025-12-24 16:02:26 gphoto2 --auto-detect rc=0
+2025-12-24 16:02:26 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:02:26 gphoto2 detected camera!
+2025-12-24 16:02:58 Keepalive failed, checking camera...
+2025-12-24 16:02:58 gphoto2 --auto-detect rc=0
+2025-12-24 16:02:58 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:02:58 gphoto2 detected camera!
+2025-12-24 16:03:30 Keepalive failed, checking camera...
+2025-12-24 16:03:30 gphoto2 --auto-detect rc=0
+2025-12-24 16:03:30 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:03:30 gphoto2 detected camera!
+2025-12-24 16:04:02 Keepalive failed, checking camera...
+2025-12-24 16:04:02 gphoto2 --auto-detect rc=0
+2025-12-24 16:04:02 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:04:02 gphoto2 detected camera!
+2025-12-24 16:04:35 Keepalive failed, checking camera...
+2025-12-24 16:04:35 gphoto2 --auto-detect rc=0
+2025-12-24 16:04:35 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:04:35 gphoto2 detected camera!
+2025-12-24 16:05:07 Keepalive failed, checking camera...
+2025-12-24 16:05:07 gphoto2 --auto-detect rc=0
+2025-12-24 16:05:07 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:05:07 gphoto2 detected camera!
+2025-12-24 16:05:39 Keepalive failed, checking camera...
+2025-12-24 16:05:39 gphoto2 --auto-detect rc=0
+2025-12-24 16:05:39 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:05:39 gphoto2 detected camera!
+2025-12-24 16:06:11 Keepalive failed, checking camera...
+2025-12-24 16:06:11 gphoto2 --auto-detect rc=0
+2025-12-24 16:06:11 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:06:11 gphoto2 detected camera!
+2025-12-24 16:06:43 Keepalive failed, checking camera...
+2025-12-24 16:06:43 gphoto2 --auto-detect rc=0
+2025-12-24 16:06:43 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:06:43 gphoto2 detected camera!
+2025-12-24 16:07:15 Keepalive failed, checking camera...
+2025-12-24 16:07:15 gphoto2 --auto-detect rc=0
+2025-12-24 16:07:15 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:07:15 gphoto2 detected camera!
+2025-12-24 16:07:48 Keepalive failed, checking camera...
+2025-12-24 16:07:48 gphoto2 --auto-detect rc=0
+2025-12-24 16:07:48 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:07:48 gphoto2 detected camera!
+2025-12-24 16:08:20 Keepalive failed, checking camera...
+2025-12-24 16:08:20 gphoto2 --auto-detect rc=0
+2025-12-24 16:08:20 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:08:20 gphoto2 detected camera!
+2025-12-24 16:08:52 Keepalive failed, checking camera...
+2025-12-24 16:08:52 gphoto2 --auto-detect rc=0
+2025-12-24 16:08:52 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:08:52 gphoto2 detected camera!
+2025-12-24 16:09:24 Keepalive failed, checking camera...
+2025-12-24 16:09:24 gphoto2 --auto-detect rc=0
+2025-12-24 16:09:24 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:09:24 gphoto2 detected camera!
+2025-12-24 16:09:56 Keepalive failed, checking camera...
+2025-12-24 16:09:56 gphoto2 --auto-detect rc=0
+2025-12-24 16:09:56 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:09:56 gphoto2 detected camera!
+2025-12-24 16:10:28 Keepalive failed, checking camera...
+2025-12-24 16:10:28 gphoto2 --auto-detect rc=0
+2025-12-24 16:10:28 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:10:28 gphoto2 detected camera!
+2025-12-24 16:11:00 Keepalive failed, checking camera...
+2025-12-24 16:11:01 gphoto2 --auto-detect rc=0
+2025-12-24 16:11:01 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:11:01 gphoto2 detected camera!
+2025-12-24 16:11:32 Keepalive failed, checking camera...
+2025-12-24 16:11:33 gphoto2 --auto-detect rc=0
+2025-12-24 16:11:33 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:11:33 gphoto2 detected camera!
+2025-12-24 16:12:05 Keepalive failed, checking camera...
+2025-12-24 16:12:05 gphoto2 --auto-detect rc=0
+2025-12-24 16:12:05 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:12:05 gphoto2 detected camera!
+2025-12-24 16:12:37 Keepalive failed, checking camera...
+2025-12-24 16:12:37 gphoto2 --auto-detect rc=0
+2025-12-24 16:12:37 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:12:37 gphoto2 detected camera!
+2025-12-24 16:13:09 Keepalive failed, checking camera...
+2025-12-24 16:13:09 gphoto2 --auto-detect rc=0
+2025-12-24 16:13:09 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:13:09 gphoto2 detected camera!
+2025-12-24 16:13:41 Keepalive failed, checking camera...
+2025-12-24 16:13:41 gphoto2 --auto-detect rc=0
+2025-12-24 16:13:41 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:13:41 gphoto2 detected camera!
+2025-12-24 16:14:13 Keepalive failed, checking camera...
+2025-12-24 16:14:14 gphoto2 --auto-detect rc=0
+2025-12-24 16:14:14 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:14:14 gphoto2 detected camera!
+2025-12-24 16:14:45 Keepalive failed, checking camera...
+2025-12-24 16:14:46 gphoto2 --auto-detect rc=0
+2025-12-24 16:14:46 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:14:46 gphoto2 detected camera!
+2025-12-24 16:15:18 Keepalive failed, checking camera...
+2025-12-24 16:15:18 gphoto2 --auto-detect rc=0
+2025-12-24 16:15:18 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:15:18 gphoto2 detected camera!
+2025-12-24 16:15:50 Keepalive failed, checking camera...
+2025-12-24 16:15:50 gphoto2 --auto-detect rc=0
+2025-12-24 16:15:50 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:15:50 gphoto2 detected camera!
+2025-12-24 16:16:22 Keepalive failed, checking camera...
+2025-12-24 16:16:22 gphoto2 --auto-detect rc=0
+2025-12-24 16:16:22 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:16:22 gphoto2 detected camera!
+2025-12-24 16:16:54 Keepalive failed, checking camera...
+2025-12-24 16:16:54 gphoto2 --auto-detect rc=0
+2025-12-24 16:16:54 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:16:54 gphoto2 detected camera!
+2025-12-24 16:17:26 Keepalive failed, checking camera...
+2025-12-24 16:17:27 gphoto2 --auto-detect rc=0
+2025-12-24 16:17:27 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:17:27 gphoto2 detected camera!
+2025-12-24 16:17:58 Keepalive failed, checking camera...
+2025-12-24 16:17:58 gphoto2 --auto-detect rc=0
+2025-12-24 16:17:58 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:17:58 gphoto2 detected camera!
+2025-12-24 16:18:31 Keepalive failed, checking camera...
+2025-12-24 16:18:31 gphoto2 --auto-detect rc=0
+2025-12-24 16:18:31 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:18:31 gphoto2 detected camera!
+2025-12-24 16:19:03 Keepalive failed, checking camera...
+2025-12-24 16:19:03 gphoto2 --auto-detect rc=0
+2025-12-24 16:19:03 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:19:03 gphoto2 detected camera!
+2025-12-24 16:19:35 Keepalive failed, checking camera...
+2025-12-24 16:19:35 gphoto2 --auto-detect rc=0
+2025-12-24 16:19:35 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:19:35 gphoto2 detected camera!
+2025-12-24 16:20:07 Keepalive failed, checking camera...
+2025-12-24 16:20:07 gphoto2 --auto-detect rc=0
+2025-12-24 16:20:07 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:20:07 gphoto2 detected camera!
+2025-12-24 16:20:39 Keepalive failed, checking camera...
+2025-12-24 16:20:39 gphoto2 --auto-detect rc=0
+2025-12-24 16:20:39 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:20:39 gphoto2 detected camera!
+2025-12-24 16:21:11 Keepalive failed, checking camera...
+2025-12-24 16:21:11 gphoto2 --auto-detect rc=0
+2025-12-24 16:21:11 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:21:11 gphoto2 detected camera!
+2025-12-24 16:21:43 Keepalive failed, checking camera...
+2025-12-24 16:21:43 gphoto2 --auto-detect rc=0
+2025-12-24 16:21:43 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:21:43 gphoto2 detected camera!
+2025-12-24 16:22:15 Keepalive failed, checking camera...
+2025-12-24 16:22:15 gphoto2 --auto-detect rc=0
+2025-12-24 16:22:15 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:22:15 gphoto2 detected camera!
+2025-12-24 16:22:47 Keepalive failed, checking camera...
+2025-12-24 16:22:47 gphoto2 --auto-detect rc=0
+2025-12-24 16:22:47 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:22:47 gphoto2 detected camera!
+2025-12-24 16:23:19 Keepalive failed, checking camera...
+2025-12-24 16:23:19 gphoto2 --auto-detect rc=0
+2025-12-24 16:23:19 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:23:19 gphoto2 detected camera!
+2025-12-24 16:23:50 Keepalive failed, checking camera...
+2025-12-24 16:23:51 gphoto2 --auto-detect rc=0
+2025-12-24 16:23:51 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:23:51 gphoto2 detected camera!
+2025-12-24 16:24:22 Keepalive failed, checking camera...
+2025-12-24 16:24:23 gphoto2 --auto-detect rc=0
+2025-12-24 16:24:23 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:24:23 gphoto2 detected camera!
+2025-12-24 16:24:54 Keepalive failed, checking camera...
+2025-12-24 16:24:55 gphoto2 --auto-detect rc=0
+2025-12-24 16:24:55 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:24:55 gphoto2 detected camera!
+2025-12-24 16:25:26 Keepalive failed, checking camera...
+2025-12-24 16:25:26 gphoto2 --auto-detect rc=0
+2025-12-24 16:25:26 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:25:26 gphoto2 detected camera!
+2025-12-24 16:25:58 Keepalive failed, checking camera...
+2025-12-24 16:25:58 gphoto2 --auto-detect rc=0
+2025-12-24 16:25:58 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:25:58 gphoto2 detected camera!
+2025-12-24 16:26:30 Keepalive failed, checking camera...
+2025-12-24 16:26:30 gphoto2 --auto-detect rc=0
+2025-12-24 16:26:30 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:26:30 gphoto2 detected camera!
+2025-12-24 16:27:02 Keepalive failed, checking camera...
+2025-12-24 16:27:02 gphoto2 --auto-detect rc=0
+2025-12-24 16:27:02 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:27:02 gphoto2 detected camera!
+2025-12-24 16:27:34 Keepalive failed, checking camera...
+2025-12-24 16:27:34 gphoto2 --auto-detect rc=0
+2025-12-24 16:27:34 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:27:34 gphoto2 detected camera!
+2025-12-24 16:28:07 Keepalive failed, checking camera...
+2025-12-24 16:28:07 gphoto2 --auto-detect rc=0
+2025-12-24 16:28:07 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:28:07 gphoto2 detected camera!
+2025-12-24 16:28:39 Keepalive failed, checking camera...
+2025-12-24 16:28:39 gphoto2 --auto-detect rc=0
+2025-12-24 16:28:39 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:28:39 gphoto2 detected camera!
+2025-12-24 16:29:11 Keepalive failed, checking camera...
+2025-12-24 16:29:11 gphoto2 --auto-detect rc=0
+2025-12-24 16:29:11 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:29:11 gphoto2 detected camera!
+2025-12-24 16:29:43 Keepalive failed, checking camera...
+2025-12-24 16:29:43 gphoto2 --auto-detect rc=0
+2025-12-24 16:29:43 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:29:43 gphoto2 detected camera!
+2025-12-24 16:30:15 Keepalive failed, checking camera...
+2025-12-24 16:30:15 gphoto2 --auto-detect rc=0
+2025-12-24 16:30:15 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:30:15 gphoto2 detected camera!
+2025-12-24 16:30:47 Keepalive failed, checking camera...
+2025-12-24 16:30:47 gphoto2 --auto-detect rc=0
+2025-12-24 16:30:47 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:30:47 gphoto2 detected camera!
+2025-12-24 16:31:19 Keepalive failed, checking camera...
+2025-12-24 16:31:19 gphoto2 --auto-detect rc=0
+2025-12-24 16:31:19 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:31:19 gphoto2 detected camera!
+2025-12-24 16:31:50 Keepalive failed, checking camera...
+2025-12-24 16:31:50 gphoto2 --auto-detect rc=0
+2025-12-24 16:31:50 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:31:50 gphoto2 detected camera!
+2025-12-24 16:32:22 Keepalive failed, checking camera...
+2025-12-24 16:32:22 gphoto2 --auto-detect rc=0
+2025-12-24 16:32:22 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:32:22 gphoto2 detected camera!
+2025-12-24 16:32:54 Keepalive failed, checking camera...
+2025-12-24 16:32:54 gphoto2 --auto-detect rc=0
+2025-12-24 16:32:54 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:32:54 gphoto2 detected camera!
+2025-12-24 16:33:26 Keepalive failed, checking camera...
+2025-12-24 16:33:26 gphoto2 --auto-detect rc=0
+2025-12-24 16:33:26 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:33:26 gphoto2 detected camera!
+2025-12-24 16:33:58 Keepalive failed, checking camera...
+2025-12-24 16:33:58 gphoto2 --auto-detect rc=0
+2025-12-24 16:33:58 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:33:58 gphoto2 detected camera!
+2025-12-24 16:34:30 Keepalive failed, checking camera...
+2025-12-24 16:34:30 gphoto2 --auto-detect rc=0
+2025-12-24 16:34:30 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:34:30 gphoto2 detected camera!
+2025-12-24 16:35:02 Keepalive failed, checking camera...
+2025-12-24 16:35:02 gphoto2 --auto-detect rc=0
+2025-12-24 16:35:02 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:35:02 gphoto2 detected camera!
+2025-12-24 16:35:34 Keepalive failed, checking camera...
+2025-12-24 16:35:34 gphoto2 --auto-detect rc=0
+2025-12-24 16:35:34 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:35:34 gphoto2 detected camera!
+2025-12-24 16:36:06 Keepalive failed, checking camera...
+2025-12-24 16:36:06 gphoto2 --auto-detect rc=0
+2025-12-24 16:36:06 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:36:06 gphoto2 detected camera!
+2025-12-24 16:36:39 Keepalive failed, checking camera...
+2025-12-24 16:36:39 gphoto2 --auto-detect rc=0
+2025-12-24 16:36:39 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i     
+USB PTP Class Camera           usb:001,002
+2025-12-24 16:36:39 gphoto2 detected camera!
+2025-12-24 16:37:11 Keepalive failed, checking camera...
+2025-12-24 16:37:11 gphoto2 --auto-detect rc=0
+2025-12-24 16:37:11 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:37:11 gphoto2 detected camera!
+2025-12-24 16:37:43 Keepalive failed, checking camera...
+2025-12-24 16:37:43 gphoto2 --auto-detect rc=0
+2025-12-24 16:37:43 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:37:43 gphoto2 detected camera!
+2025-12-24 16:38:15 Keepalive failed, checking camera...
+2025-12-24 16:38:15 gphoto2 --auto-detect rc=0
+2025-12-24 16:38:15 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:38:15 gphoto2 detected camera!
+2025-12-24 16:38:47 Keepalive failed, checking camera...
+2025-12-24 16:38:47 gphoto2 --auto-detect rc=0
+2025-12-24 16:38:47 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:38:47 gphoto2 detected camera!
+2025-12-24 16:39:19 Keepalive failed, checking camera...
+2025-12-24 16:39:19 gphoto2 --auto-detect rc=0
+2025-12-24 16:39:19 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:39:19 gphoto2 detected camera!
+2025-12-24 16:39:51 Keepalive failed, checking camera...
+2025-12-24 16:39:51 gphoto2 --auto-detect rc=0
+2025-12-24 16:39:51 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:39:51 gphoto2 detected camera!
+2025-12-24 16:40:23 Keepalive failed, checking camera...
+2025-12-24 16:40:23 gphoto2 --auto-detect rc=0
+2025-12-24 16:40:23 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:40:23 gphoto2 detected camera!
+2025-12-24 16:40:55 Keepalive failed, checking camera...
+2025-12-24 16:40:55 gphoto2 --auto-detect rc=0
+2025-12-24 16:40:55 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:40:55 gphoto2 detected camera!
+2025-12-24 16:41:27 Keepalive failed, checking camera...
+2025-12-24 16:41:27 gphoto2 --auto-detect rc=0
+2025-12-24 16:41:27 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:41:27 gphoto2 detected camera!
+2025-12-24 16:42:00 Keepalive failed, checking camera...
+2025-12-24 16:42:00 gphoto2 --auto-detect rc=0
+2025-12-24 16:42:00 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:42:00 gphoto2 detected camera!
+2025-12-24 16:42:32 Keepalive failed, checking camera...
+2025-12-24 16:42:32 gphoto2 --auto-detect rc=0
+2025-12-24 16:42:32 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:42:32 gphoto2 detected camera!
+2025-12-24 16:43:04 Keepalive failed, checking camera...
+2025-12-24 16:43:04 gphoto2 --auto-detect rc=0
+2025-12-24 16:43:04 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:43:04 gphoto2 detected camera!
+2025-12-24 16:43:36 Keepalive failed, checking camera...
+2025-12-24 16:43:36 gphoto2 --auto-detect rc=0
+2025-12-24 16:43:36 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:43:36 gphoto2 detected camera!
+2025-12-24 16:44:08 Keepalive failed, checking camera...
+2025-12-24 16:44:08 gphoto2 --auto-detect rc=0
+2025-12-24 16:44:08 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:44:08 gphoto2 detected camera!
+2025-12-24 16:44:40 Keepalive failed, checking camera...
+2025-12-24 16:44:40 gphoto2 --auto-detect rc=0
+2025-12-24 16:44:40 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:44:40 gphoto2 detected camera!
+2025-12-24 16:45:12 Keepalive failed, checking camera...
+2025-12-24 16:45:12 gphoto2 --auto-detect rc=0
+2025-12-24 16:45:12 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:45:12 gphoto2 detected camera!
+2025-12-24 16:45:44 Keepalive failed, checking camera...
+2025-12-24 16:45:44 gphoto2 --auto-detect rc=0
+2025-12-24 16:45:44 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:45:44 gphoto2 detected camera!
+2025-12-24 16:46:16 Keepalive failed, checking camera...
+2025-12-24 16:46:16 gphoto2 --auto-detect rc=0
+2025-12-24 16:46:16 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:46:16 gphoto2 detected camera!
+2025-12-24 16:46:48 Keepalive failed, checking camera...
+2025-12-24 16:46:48 gphoto2 --auto-detect rc=0
+2025-12-24 16:46:48 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:46:48 gphoto2 detected camera!
+2025-12-24 16:47:20 Keepalive failed, checking camera...
+2025-12-24 16:47:20 gphoto2 --auto-detect rc=0
+2025-12-24 16:47:20 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:47:20 gphoto2 detected camera!
+2025-12-24 16:47:52 Keepalive failed, checking camera...
+2025-12-24 16:47:52 gphoto2 --auto-detect rc=0
+2025-12-24 16:47:52 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:47:52 gphoto2 detected camera!
+2025-12-24 16:48:24 Keepalive failed, checking camera...
+2025-12-24 16:48:24 gphoto2 --auto-detect rc=0
+2025-12-24 16:48:24 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:48:24 gphoto2 detected camera!
+2025-12-24 16:48:56 Keepalive failed, checking camera...
+2025-12-24 16:48:56 gphoto2 --auto-detect rc=0
+2025-12-24 16:48:56 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:48:56 gphoto2 detected camera!
+2025-12-24 16:49:28 Keepalive failed, checking camera...
+2025-12-24 16:49:29 gphoto2 --auto-detect rc=0
+2025-12-24 16:49:29 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:49:29 gphoto2 detected camera!
+2025-12-24 16:50:00 Keepalive failed, checking camera...
+2025-12-24 16:50:01 gphoto2 --auto-detect rc=0
+2025-12-24 16:50:01 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:50:01 gphoto2 detected camera!
+2025-12-24 16:50:33 Keepalive failed, checking camera...
+2025-12-24 16:50:33 gphoto2 --auto-detect rc=0
+2025-12-24 16:50:33 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:50:33 gphoto2 detected camera!
+2025-12-24 16:51:05 Keepalive failed, checking camera...
+2025-12-24 16:51:05 gphoto2 --auto-detect rc=0
+2025-12-24 16:51:05 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:51:05 gphoto2 detected camera!
+2025-12-24 16:51:37 Keepalive failed, checking camera...
+2025-12-24 16:51:37 gphoto2 --auto-detect rc=0
+2025-12-24 16:51:37 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:51:37 gphoto2 detected camera!
+2025-12-24 16:52:09 Keepalive failed, checking camera...
+2025-12-24 16:52:09 gphoto2 --auto-detect rc=0
+2025-12-24 16:52:09 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:52:09 gphoto2 detected camera!
+2025-12-24 16:52:41 Keepalive failed, checking camera...
+2025-12-24 16:52:41 gphoto2 --auto-detect rc=0
+2025-12-24 16:52:41 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:52:41 gphoto2 detected camera!
+2025-12-24 16:53:13 Keepalive failed, checking camera...
+2025-12-24 16:53:13 gphoto2 --auto-detect rc=0
+2025-12-24 16:53:13 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:53:13 gphoto2 detected camera!
+2025-12-24 16:53:46 Keepalive failed, checking camera...
+2025-12-24 16:53:46 gphoto2 --auto-detect rc=0
+2025-12-24 16:53:46 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:53:46 gphoto2 detected camera!
+2025-12-24 16:54:17 Keepalive failed, checking camera...
+2025-12-24 16:54:18 gphoto2 --auto-detect rc=0
+2025-12-24 16:54:18 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:54:18 gphoto2 detected camera!
+2025-12-24 16:54:50 Keepalive failed, checking camera...
+2025-12-24 16:54:50 gphoto2 --auto-detect rc=0
+2025-12-24 16:54:50 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:54:50 gphoto2 detected camera!
+2025-12-24 16:55:22 Keepalive failed, checking camera...
+2025-12-24 16:55:22 gphoto2 --auto-detect rc=0
+2025-12-24 16:55:22 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:55:22 gphoto2 detected camera!
+2025-12-24 16:55:54 Keepalive failed, checking camera...
+2025-12-24 16:55:54 gphoto2 --auto-detect rc=0
+2025-12-24 16:55:54 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:55:54 gphoto2 detected camera!
+2025-12-24 16:56:26 Keepalive failed, checking camera...
+2025-12-24 16:56:26 gphoto2 --auto-detect rc=0
+2025-12-24 16:56:26 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:56:26 gphoto2 detected camera!
+2025-12-24 16:56:58 Keepalive failed, checking camera...
+2025-12-24 16:56:58 gphoto2 --auto-detect rc=0
+2025-12-24 16:56:58 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:56:58 gphoto2 detected camera!
+2025-12-24 16:57:30 Keepalive failed, checking camera...
+2025-12-24 16:57:30 gphoto2 --auto-detect rc=0
+2025-12-24 16:57:30 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:57:30 gphoto2 detected camera!
+2025-12-24 16:58:02 Keepalive failed, checking camera...
+2025-12-24 16:58:02 gphoto2 --auto-detect rc=0
+2025-12-24 16:58:02 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:58:02 gphoto2 detected camera!
+2025-12-24 16:58:34 Keepalive failed, checking camera...
+2025-12-24 16:58:34 gphoto2 --auto-detect rc=0
+2025-12-24 16:58:34 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:58:34 gphoto2 detected camera!
+2025-12-24 16:59:07 Keepalive failed, checking camera...
+2025-12-24 16:59:07 gphoto2 --auto-detect rc=0
+2025-12-24 16:59:07 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:59:07 gphoto2 detected camera!
+2025-12-24 16:59:39 Keepalive failed, checking camera...
+2025-12-24 16:59:39 gphoto2 --auto-detect rc=0
+2025-12-24 16:59:39 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 16:59:39 gphoto2 detected camera!
+2025-12-24 17:00:11 Keepalive failed, checking camera...
+2025-12-24 17:00:11 gphoto2 --auto-detect rc=0
+2025-12-24 17:00:11 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:00:11 gphoto2 detected camera!
+2025-12-24 17:00:43 Keepalive failed, checking camera...
+2025-12-24 17:00:43 gphoto2 --auto-detect rc=0
+2025-12-24 17:00:43 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:00:43 gphoto2 detected camera!
+2025-12-24 17:01:15 Keepalive failed, checking camera...
+2025-12-24 17:01:15 gphoto2 --auto-detect rc=0
+2025-12-24 17:01:15 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:01:15 gphoto2 detected camera!
+2025-12-24 17:01:47 Keepalive failed, checking camera...
+2025-12-24 17:01:47 gphoto2 --auto-detect rc=0
+2025-12-24 17:01:47 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:01:47 gphoto2 detected camera!
+2025-12-24 17:02:19 Keepalive failed, checking camera...
+2025-12-24 17:02:19 gphoto2 --auto-detect rc=0
+2025-12-24 17:02:19 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:02:19 gphoto2 detected camera!
+2025-12-24 17:02:51 Keepalive failed, checking camera...
+2025-12-24 17:02:51 gphoto2 --auto-detect rc=0
+2025-12-24 17:02:51 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:02:51 gphoto2 detected camera!
+2025-12-24 17:03:23 Keepalive failed, checking camera...
+2025-12-24 17:03:23 gphoto2 --auto-detect rc=0
+2025-12-24 17:03:23 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:03:23 gphoto2 detected camera!
+2025-12-24 17:03:55 Keepalive failed, checking camera...
+2025-12-24 17:03:55 gphoto2 --auto-detect rc=0
+2025-12-24 17:03:55 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:03:55 gphoto2 detected camera!
+2025-12-24 17:04:27 Keepalive failed, checking camera...
+2025-12-24 17:04:27 gphoto2 --auto-detect rc=0
+2025-12-24 17:04:27 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:04:27 gphoto2 detected camera!
+2025-12-24 17:04:59 Keepalive failed, checking camera...
+2025-12-24 17:04:59 gphoto2 --auto-detect rc=0
+2025-12-24 17:04:59 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:04:59 gphoto2 detected camera!
+2025-12-24 17:05:31 Keepalive failed, checking camera...
+2025-12-24 17:05:31 gphoto2 --auto-detect rc=0
+2025-12-24 17:05:31 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:05:31 gphoto2 detected camera!
+2025-12-24 17:06:03 Keepalive failed, checking camera...
+2025-12-24 17:06:03 gphoto2 --auto-detect rc=0
+2025-12-24 17:06:03 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:06:03 gphoto2 detected camera!
+2025-12-24 17:06:36 Keepalive failed, checking camera...
+2025-12-24 17:06:36 gphoto2 --auto-detect rc=0
+2025-12-24 17:06:36 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:06:36 gphoto2 detected camera!
+2025-12-24 17:07:08 Keepalive failed, checking camera...
+2025-12-24 17:07:08 gphoto2 --auto-detect rc=0
+2025-12-24 17:07:08 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:07:08 gphoto2 detected camera!
+2025-12-24 17:07:40 Keepalive failed, checking camera...
+2025-12-24 17:07:40 gphoto2 --auto-detect rc=0
+2025-12-24 17:07:40 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:07:40 gphoto2 detected camera!
+2025-12-24 17:08:12 Keepalive failed, checking camera...
+2025-12-24 17:08:12 gphoto2 --auto-detect rc=0
+2025-12-24 17:08:12 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:08:12 gphoto2 detected camera!
+2025-12-24 17:08:44 Keepalive failed, checking camera...
+2025-12-24 17:08:44 gphoto2 --auto-detect rc=0
+2025-12-24 17:08:44 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:08:44 gphoto2 detected camera!
+2025-12-24 17:09:16 Keepalive failed, checking camera...
+2025-12-24 17:09:16 gphoto2 --auto-detect rc=0
+2025-12-24 17:09:16 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:09:16 gphoto2 detected camera!
+2025-12-24 17:09:48 Keepalive failed, checking camera...
+2025-12-24 17:09:49 gphoto2 --auto-detect rc=0
+2025-12-24 17:09:49 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:09:49 gphoto2 detected camera!
+2025-12-24 17:10:20 Keepalive failed, checking camera...
+2025-12-24 17:10:21 gphoto2 --auto-detect rc=0
+2025-12-24 17:10:21 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:10:21 gphoto2 detected camera!
+2025-12-24 17:10:53 Keepalive failed, checking camera...
+2025-12-24 17:10:53 gphoto2 --auto-detect rc=0
+2025-12-24 17:10:53 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:10:53 gphoto2 detected camera!
+2025-12-24 17:11:25 Keepalive failed, checking camera...
+2025-12-24 17:11:25 gphoto2 --auto-detect rc=0
+2025-12-24 17:11:25 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:11:25 gphoto2 detected camera!
+2025-12-24 17:11:57 Keepalive failed, checking camera...
+2025-12-24 17:11:57 gphoto2 --auto-detect rc=0
+2025-12-24 17:11:57 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:11:57 gphoto2 detected camera!
+2025-12-24 17:12:29 Keepalive failed, checking camera...
+2025-12-24 17:12:29 gphoto2 --auto-detect rc=0
+2025-12-24 17:12:29 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:12:29 gphoto2 detected camera!
+2025-12-24 17:13:01 Keepalive failed, checking camera...
+2025-12-24 17:13:01 gphoto2 --auto-detect rc=0
+2025-12-24 17:13:01 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:13:01 gphoto2 detected camera!
+2025-12-24 17:13:33 Keepalive failed, checking camera...
+2025-12-24 17:13:33 gphoto2 --auto-detect rc=0
+2025-12-24 17:13:33 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:13:33 gphoto2 detected camera!
+2025-12-24 17:14:06 Keepalive failed, checking camera...
+2025-12-24 17:14:06 gphoto2 --auto-detect rc=0
+2025-12-24 17:14:06 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:14:06 gphoto2 detected camera!
+2025-12-24 17:14:37 Keepalive failed, checking camera...
+2025-12-24 17:14:38 gphoto2 --auto-detect rc=0
+2025-12-24 17:14:38 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:14:38 gphoto2 detected camera!
+2025-12-24 17:15:10 Keepalive failed, checking camera...
+2025-12-24 17:15:10 gphoto2 --auto-detect rc=0
+2025-12-24 17:15:10 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:15:10 gphoto2 detected camera!
+2025-12-24 17:15:42 Keepalive failed, checking camera...
+2025-12-24 17:15:42 gphoto2 --auto-detect rc=0
+2025-12-24 17:15:42 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:15:42 gphoto2 detected camera!
+2025-12-24 17:16:14 Keepalive failed, checking camera...
+2025-12-24 17:16:14 gphoto2 --auto-detect rc=0
+2025-12-24 17:16:14 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:16:14 gphoto2 detected camera!
+2025-12-24 17:16:46 Keepalive failed, checking camera...
+2025-12-24 17:16:46 gphoto2 --auto-detect rc=0
+2025-12-24 17:16:46 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:16:46 gphoto2 detected camera!
+2025-12-24 17:17:18 Keepalive failed, checking camera...
+2025-12-24 17:17:18 gphoto2 --auto-detect rc=0
+2025-12-24 17:17:18 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:17:18 gphoto2 detected camera!
+2025-12-24 17:17:50 Keepalive failed, checking camera...
+2025-12-24 17:17:50 gphoto2 --auto-detect rc=0
+2025-12-24 17:17:50 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:17:50 gphoto2 detected camera!
+2025-12-24 17:18:22 Keepalive failed, checking camera...
+2025-12-24 17:18:22 gphoto2 --auto-detect rc=0
+2025-12-24 17:18:22 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:18:22 gphoto2 detected camera!
+2025-12-24 17:18:54 Keepalive failed, checking camera...
+2025-12-24 17:18:54 gphoto2 --auto-detect rc=0
+2025-12-24 17:18:54 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:18:54 gphoto2 detected camera!
+2025-12-24 17:19:26 Keepalive failed, checking camera...
+2025-12-24 17:19:26 gphoto2 --auto-detect rc=0
+2025-12-24 17:19:26 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:19:26 gphoto2 detected camera!
+2025-12-24 17:19:58 Keepalive failed, checking camera...
+2025-12-24 17:19:58 gphoto2 --auto-detect rc=0
+2025-12-24 17:19:58 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:19:58 gphoto2 detected camera!
+2025-12-24 17:20:30 Keepalive failed, checking camera...
+2025-12-24 17:20:30 gphoto2 --auto-detect rc=0
+2025-12-24 17:20:30 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:20:30 gphoto2 detected camera!
+2025-12-24 17:21:02 Keepalive failed, checking camera...
+2025-12-24 17:21:02 gphoto2 --auto-detect rc=0
+2025-12-24 17:21:02 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:21:02 gphoto2 detected camera!
+2025-12-24 17:21:34 Keepalive failed, checking camera...
+2025-12-24 17:21:34 gphoto2 --auto-detect rc=0
+2025-12-24 17:21:34 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:21:34 gphoto2 detected camera!
+2025-12-24 17:22:06 Keepalive failed, checking camera...
+2025-12-24 17:22:06 gphoto2 --auto-detect rc=0
+2025-12-24 17:22:06 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:22:06 gphoto2 detected camera!
+2025-12-24 17:22:39 Keepalive failed, checking camera...
+2025-12-24 17:22:39 gphoto2 --auto-detect rc=0
+2025-12-24 17:22:39 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:22:39 gphoto2 detected camera!
+2025-12-24 17:23:11 Keepalive failed, checking camera...
+2025-12-24 17:23:11 gphoto2 --auto-detect rc=0
+2025-12-24 17:23:11 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:23:11 gphoto2 detected camera!
+2025-12-24 17:23:43 Keepalive failed, checking camera...
+2025-12-24 17:23:43 gphoto2 --auto-detect rc=0
+2025-12-24 17:23:43 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:23:43 gphoto2 detected camera!
+2025-12-24 17:24:15 Keepalive failed, checking camera...
+2025-12-24 17:24:15 gphoto2 --auto-detect rc=0
+2025-12-24 17:24:15 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:24:15 gphoto2 detected camera!
+2025-12-24 17:24:47 Keepalive failed, checking camera...
+2025-12-24 17:24:47 gphoto2 --auto-detect rc=0
+2025-12-24 17:24:47 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:24:47 gphoto2 detected camera!
+2025-12-24 17:25:19 Keepalive failed, checking camera...
+2025-12-24 17:25:19 gphoto2 --auto-detect rc=0
+2025-12-24 17:25:19 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:25:19 gphoto2 detected camera!
+2025-12-24 17:25:51 Keepalive failed, checking camera...
+2025-12-24 17:25:51 gphoto2 --auto-detect rc=0
+2025-12-24 17:25:51 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:25:51 gphoto2 detected camera!
+2025-12-24 17:26:23 Keepalive failed, checking camera...
+2025-12-24 17:26:23 gphoto2 --auto-detect rc=0
+2025-12-24 17:26:23 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:26:23 gphoto2 detected camera!
+2025-12-24 17:26:55 Keepalive failed, checking camera...
+2025-12-24 17:26:55 gphoto2 --auto-detect rc=0
+2025-12-24 17:26:55 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:26:55 gphoto2 detected camera!
+2025-12-24 17:27:27 Keepalive failed, checking camera...
+2025-12-24 17:27:27 gphoto2 --auto-detect rc=0
+2025-12-24 17:27:27 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:27:27 gphoto2 detected camera!
+2025-12-24 17:27:59 Keepalive failed, checking camera...
+2025-12-24 17:27:59 gphoto2 --auto-detect rc=0
+2025-12-24 17:27:59 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:27:59 gphoto2 detected camera!
+2025-12-24 17:28:31 Keepalive failed, checking camera...
+2025-12-24 17:28:31 gphoto2 --auto-detect rc=0
+2025-12-24 17:28:31 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:28:31 gphoto2 detected camera!
+2025-12-24 17:29:04 Keepalive failed, checking camera...
+2025-12-24 17:29:04 gphoto2 --auto-detect rc=0
+2025-12-24 17:29:04 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:29:04 gphoto2 detected camera!
+2025-12-24 17:29:36 Keepalive failed, checking camera...
+2025-12-24 17:29:36 gphoto2 --auto-detect rc=0
+2025-12-24 17:29:36 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:29:36 gphoto2 detected camera!
+2025-12-24 17:30:08 Keepalive failed, checking camera...
+2025-12-24 17:30:08 gphoto2 --auto-detect rc=0
+2025-12-24 17:30:08 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:30:08 gphoto2 detected camera!
+2025-12-24 17:30:40 Keepalive failed, checking camera...
+2025-12-24 17:30:40 gphoto2 --auto-detect rc=0
+2025-12-24 17:30:40 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:30:40 gphoto2 detected camera!
+2025-12-24 17:31:12 Keepalive failed, checking camera...
+2025-12-24 17:31:12 gphoto2 --auto-detect rc=0
+2025-12-24 17:31:12 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:31:12 gphoto2 detected camera!
+2025-12-24 17:31:44 Keepalive failed, checking camera...
+2025-12-24 17:31:44 gphoto2 --auto-detect rc=0
+2025-12-24 17:31:44 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:31:44 gphoto2 detected camera!
+2025-12-24 17:32:16 Keepalive failed, checking camera...
+2025-12-24 17:32:16 gphoto2 --auto-detect rc=0
+2025-12-24 17:32:16 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:32:16 gphoto2 detected camera!
+2025-12-24 17:32:48 Keepalive failed, checking camera...
+2025-12-24 17:32:48 gphoto2 --auto-detect rc=0
+2025-12-24 17:32:48 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:32:48 gphoto2 detected camera!
+2025-12-24 17:33:21 Keepalive failed, checking camera...
+2025-12-24 17:33:21 gphoto2 --auto-detect rc=0
+2025-12-24 17:33:21 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:33:21 gphoto2 detected camera!
+2025-12-24 17:33:53 Keepalive failed, checking camera...
+2025-12-24 17:33:53 gphoto2 --auto-detect rc=0
+2025-12-24 17:33:53 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:33:53 gphoto2 detected camera!
+2025-12-24 17:34:25 Keepalive failed, checking camera...
+2025-12-24 17:34:25 gphoto2 --auto-detect rc=0
+2025-12-24 17:34:25 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:34:25 gphoto2 detected camera!
+2025-12-24 17:34:57 Keepalive failed, checking camera...
+2025-12-24 17:34:57 gphoto2 --auto-detect rc=0
+2025-12-24 17:34:57 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:34:57 gphoto2 detected camera!
+2025-12-24 17:35:29 Keepalive failed, checking camera...
+2025-12-24 17:35:29 gphoto2 --auto-detect rc=0
+2025-12-24 17:35:29 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:35:29 gphoto2 detected camera!
+2025-12-24 17:36:01 Keepalive failed, checking camera...
+2025-12-24 17:36:01 gphoto2 --auto-detect rc=0
+2025-12-24 17:36:01 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:36:01 gphoto2 detected camera!
+2025-12-24 17:36:33 Keepalive failed, checking camera...
+2025-12-24 17:36:33 gphoto2 --auto-detect rc=0
+2025-12-24 17:36:33 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:36:33 gphoto2 detected camera!
+2025-12-24 17:37:05 Keepalive failed, checking camera...
+2025-12-24 17:37:05 gphoto2 --auto-detect rc=0
+2025-12-24 17:37:05 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:37:05 gphoto2 detected camera!
+2025-12-24 17:37:37 Keepalive failed, checking camera...
+2025-12-24 17:37:37 gphoto2 --auto-detect rc=0
+2025-12-24 17:37:37 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:37:37 gphoto2 detected camera!
+2025-12-24 17:38:09 Keepalive failed, checking camera...
+2025-12-24 17:38:09 gphoto2 --auto-detect rc=0
+2025-12-24 17:38:09 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:38:09 gphoto2 detected camera!
+2025-12-24 17:38:41 Keepalive failed, checking camera...
+2025-12-24 17:38:41 gphoto2 --auto-detect rc=0
+2025-12-24 17:38:41 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:38:41 gphoto2 detected camera!
+2025-12-24 17:39:13 Keepalive failed, checking camera...
+2025-12-24 17:39:13 gphoto2 --auto-detect rc=0
+2025-12-24 17:39:13 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:39:13 gphoto2 detected camera!
+2025-12-24 17:39:45 Keepalive failed, checking camera...
+2025-12-24 17:39:45 gphoto2 --auto-detect rc=0
+2025-12-24 17:39:45 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:39:45 gphoto2 detected camera!
+2025-12-24 17:40:17 Keepalive failed, checking camera...
+2025-12-24 17:40:17 gphoto2 --auto-detect rc=0
+2025-12-24 17:40:17 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:40:17 gphoto2 detected camera!
+2025-12-24 17:40:50 Keepalive failed, checking camera...
+2025-12-24 17:40:50 gphoto2 --auto-detect rc=0
+2025-12-24 17:40:50 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:40:50 gphoto2 detected camera!
+2025-12-24 17:41:22 Keepalive failed, checking camera...
+2025-12-24 17:41:22 gphoto2 --auto-detect rc=0
+2025-12-24 17:41:22 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:41:22 gphoto2 detected camera!
+2025-12-24 17:41:54 Keepalive failed, checking camera...
+2025-12-24 17:41:54 gphoto2 --auto-detect rc=0
+2025-12-24 17:41:54 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:41:54 gphoto2 detected camera!
+2025-12-24 17:42:26 Keepalive failed, checking camera...
+2025-12-24 17:42:26 gphoto2 --auto-detect rc=0
+2025-12-24 17:42:26 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:42:26 gphoto2 detected camera!
+2025-12-24 17:42:58 Keepalive failed, checking camera...
+2025-12-24 17:42:58 gphoto2 --auto-detect rc=0
+2025-12-24 17:42:58 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:42:58 gphoto2 detected camera!
+2025-12-24 17:43:30 Keepalive failed, checking camera...
+2025-12-24 17:43:30 gphoto2 --auto-detect rc=0
+2025-12-24 17:43:30 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:43:30 gphoto2 detected camera!
+2025-12-24 17:44:02 Keepalive failed, checking camera...
+2025-12-24 17:44:02 gphoto2 --auto-detect rc=0
+2025-12-24 17:44:02 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:44:02 gphoto2 detected camera!
+2025-12-24 17:44:34 Keepalive failed, checking camera...
+2025-12-24 17:44:34 gphoto2 --auto-detect rc=0
+2025-12-24 17:44:34 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:44:34 gphoto2 detected camera!
+2025-12-24 17:45:06 Keepalive failed, checking camera...
+2025-12-24 17:45:06 gphoto2 --auto-detect rc=0
+2025-12-24 17:45:06 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:45:06 gphoto2 detected camera!
+2025-12-24 17:45:38 Keepalive failed, checking camera...
+2025-12-24 17:45:38 gphoto2 --auto-detect rc=0
+2025-12-24 17:45:38 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:45:38 gphoto2 detected camera!
+2025-12-24 17:46:11 Keepalive failed, checking camera...
+2025-12-24 17:46:11 gphoto2 --auto-detect rc=0
+2025-12-24 17:46:11 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:46:11 gphoto2 detected camera!
+2025-12-24 17:46:43 Keepalive failed, checking camera...
+2025-12-24 17:46:43 gphoto2 --auto-detect rc=0
+2025-12-24 17:46:43 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:46:43 gphoto2 detected camera!
+2025-12-24 17:47:15 Keepalive failed, checking camera...
+2025-12-24 17:47:15 gphoto2 --auto-detect rc=0
+2025-12-24 17:47:15 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:47:15 gphoto2 detected camera!
+2025-12-24 17:47:47 Keepalive failed, checking camera...
+2025-12-24 17:47:47 gphoto2 --auto-detect rc=0
+2025-12-24 17:47:47 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:47:47 gphoto2 detected camera!
+2025-12-24 17:48:19 Keepalive failed, checking camera...
+2025-12-24 17:48:19 gphoto2 --auto-detect rc=0
+2025-12-24 17:48:19 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:48:19 gphoto2 detected camera!
+2025-12-24 17:48:51 Keepalive failed, checking camera...
+2025-12-24 17:48:52 gphoto2 --auto-detect rc=0
+2025-12-24 17:48:52 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:48:52 gphoto2 detected camera!
+2025-12-24 17:49:24 Keepalive failed, checking camera...
+2025-12-24 17:49:24 gphoto2 --auto-detect rc=0
+2025-12-24 17:49:24 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:49:24 gphoto2 detected camera!
+2025-12-24 17:49:56 Keepalive failed, checking camera...
+2025-12-24 17:49:56 gphoto2 --auto-detect rc=0
+2025-12-24 17:49:56 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:49:56 gphoto2 detected camera!
+2025-12-24 17:50:28 Keepalive failed, checking camera...
+2025-12-24 17:50:28 gphoto2 --auto-detect rc=0
+2025-12-24 17:50:28 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:50:28 gphoto2 detected camera!
+2025-12-24 17:51:00 Keepalive failed, checking camera...
+2025-12-24 17:51:00 gphoto2 --auto-detect rc=0
+2025-12-24 17:51:00 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:51:00 gphoto2 detected camera!
+2025-12-24 17:51:32 Keepalive failed, checking camera...
+2025-12-24 17:51:32 gphoto2 --auto-detect rc=0
+2025-12-24 17:51:32 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:51:32 gphoto2 detected camera!
+2025-12-24 17:52:04 Keepalive failed, checking camera...
+2025-12-24 17:52:04 gphoto2 --auto-detect rc=0
+2025-12-24 17:52:04 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:52:04 gphoto2 detected camera!
+2025-12-24 17:52:36 Keepalive failed, checking camera...
+2025-12-24 17:52:36 gphoto2 --auto-detect rc=0
+2025-12-24 17:52:36 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:52:36 gphoto2 detected camera!
+2025-12-24 17:53:08 Keepalive failed, checking camera...
+2025-12-24 17:53:08 gphoto2 --auto-detect rc=0
+2025-12-24 17:53:08 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:53:08 gphoto2 detected camera!
+2025-12-24 17:53:40 Keepalive failed, checking camera...
+2025-12-24 17:53:41 gphoto2 --auto-detect rc=0
+2025-12-24 17:53:41 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:53:41 gphoto2 detected camera!
+2025-12-24 17:54:13 Keepalive failed, checking camera...
+2025-12-24 17:54:13 gphoto2 --auto-detect rc=0
+2025-12-24 17:54:13 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:54:13 gphoto2 detected camera!
+2025-12-24 17:54:45 Keepalive failed, checking camera...
+2025-12-24 17:54:45 gphoto2 --auto-detect rc=0
+2025-12-24 17:54:45 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:54:45 gphoto2 detected camera!
+2025-12-24 17:55:17 Keepalive failed, checking camera...
+2025-12-24 17:55:17 gphoto2 --auto-detect rc=0
+2025-12-24 17:55:17 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:55:17 gphoto2 detected camera!
+2025-12-24 17:55:49 Keepalive failed, checking camera...
+2025-12-24 17:55:49 gphoto2 --auto-detect rc=0
+2025-12-24 17:55:49 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:55:49 gphoto2 detected camera!
+2025-12-24 17:56:21 Keepalive failed, checking camera...
+2025-12-24 17:56:21 gphoto2 --auto-detect rc=0
+2025-12-24 17:56:21 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:56:21 gphoto2 detected camera!
+2025-12-24 17:56:53 Keepalive failed, checking camera...
+2025-12-24 17:56:53 gphoto2 --auto-detect rc=0
+2025-12-24 17:56:53 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:56:53 gphoto2 detected camera!
+2025-12-24 17:57:25 Keepalive failed, checking camera...
+2025-12-24 17:57:25 gphoto2 --auto-detect rc=0
+2025-12-24 17:57:25 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:57:25 gphoto2 detected camera!
+2025-12-24 17:57:58 Keepalive failed, checking camera...
+2025-12-24 17:57:58 gphoto2 --auto-detect rc=0
+2025-12-24 17:57:58 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:57:58 gphoto2 detected camera!
+2025-12-24 17:58:30 Keepalive failed, checking camera...
+2025-12-24 17:58:30 gphoto2 --auto-detect rc=0
+2025-12-24 17:58:30 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:58:30 gphoto2 detected camera!
+2025-12-24 17:59:02 Keepalive failed, checking camera...
+2025-12-24 17:59:02 gphoto2 --auto-detect rc=0
+2025-12-24 17:59:02 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:59:02 gphoto2 detected camera!
+2025-12-24 17:59:34 Keepalive failed, checking camera...
+2025-12-24 17:59:34 gphoto2 --auto-detect rc=0
+2025-12-24 17:59:34 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 17:59:34 gphoto2 detected camera!
+2025-12-24 18:00:06 Keepalive failed, checking camera...
+2025-12-24 18:00:06 gphoto2 --auto-detect rc=0
+2025-12-24 18:00:06 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:00:06 gphoto2 detected camera!
+2025-12-24 18:00:38 Keepalive failed, checking camera...
+2025-12-24 18:00:38 gphoto2 --auto-detect rc=0
+2025-12-24 18:00:38 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:00:38 gphoto2 detected camera!
+2025-12-24 18:01:10 Keepalive failed, checking camera...
+2025-12-24 18:01:10 gphoto2 --auto-detect rc=0
+2025-12-24 18:01:10 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:01:10 gphoto2 detected camera!
+2025-12-24 18:01:42 Keepalive failed, checking camera...
+2025-12-24 18:01:42 gphoto2 --auto-detect rc=0
+2025-12-24 18:01:42 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:01:42 gphoto2 detected camera!
+2025-12-24 18:02:15 Keepalive failed, checking camera...
+2025-12-24 18:02:15 gphoto2 --auto-detect rc=0
+2025-12-24 18:02:15 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:02:15 gphoto2 detected camera!
+2025-12-24 18:02:47 Keepalive failed, checking camera...
+2025-12-24 18:02:47 gphoto2 --auto-detect rc=0
+2025-12-24 18:02:47 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:02:47 gphoto2 detected camera!
+2025-12-24 18:03:19 Keepalive failed, checking camera...
+2025-12-24 18:03:19 gphoto2 --auto-detect rc=0
+2025-12-24 18:03:19 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:03:19 gphoto2 detected camera!
+2025-12-24 18:03:51 Keepalive failed, checking camera...
+2025-12-24 18:03:51 gphoto2 --auto-detect rc=0
+2025-12-24 18:03:51 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:03:51 gphoto2 detected camera!
+2025-12-24 18:04:23 Keepalive failed, checking camera...
+2025-12-24 18:04:23 gphoto2 --auto-detect rc=0
+2025-12-24 18:04:23 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:04:23 gphoto2 detected camera!
+2025-12-24 18:04:55 Keepalive failed, checking camera...
+2025-12-24 18:04:55 gphoto2 --auto-detect rc=0
+2025-12-24 18:04:55 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:04:55 gphoto2 detected camera!
+2025-12-24 18:05:27 Keepalive failed, checking camera...
+2025-12-24 18:05:27 gphoto2 --auto-detect rc=0
+2025-12-24 18:05:27 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:05:27 gphoto2 detected camera!
+2025-12-24 18:05:59 Keepalive failed, checking camera...
+2025-12-24 18:05:59 gphoto2 --auto-detect rc=0
+2025-12-24 18:05:59 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:05:59 gphoto2 detected camera!
+2025-12-24 18:06:31 Keepalive failed, checking camera...
+2025-12-24 18:06:31 gphoto2 --auto-detect rc=0
+2025-12-24 18:06:31 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:06:31 gphoto2 detected camera!
+2025-12-24 18:07:03 Keepalive failed, checking camera...
+2025-12-24 18:07:03 gphoto2 --auto-detect rc=0
+2025-12-24 18:07:03 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:07:03 gphoto2 detected camera!
+2025-12-24 18:07:35 Keepalive failed, checking camera...
+2025-12-24 18:07:35 gphoto2 --auto-detect rc=0
+2025-12-24 18:07:35 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:07:35 gphoto2 detected camera!
+2025-12-24 18:08:07 Keepalive failed, checking camera...
+2025-12-24 18:08:07 gphoto2 --auto-detect rc=0
+2025-12-24 18:08:07 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:08:07 gphoto2 detected camera!
+2025-12-24 18:08:39 Keepalive failed, checking camera...
+2025-12-24 18:08:39 gphoto2 --auto-detect rc=0
+2025-12-24 18:08:39 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:08:39 gphoto2 detected camera!
+2025-12-24 18:09:11 Keepalive failed, checking camera...
+2025-12-24 18:09:11 gphoto2 --auto-detect rc=0
+2025-12-24 18:09:11 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:09:11 gphoto2 detected camera!
+2025-12-24 18:09:43 Keepalive failed, checking camera...
+2025-12-24 18:09:43 gphoto2 --auto-detect rc=0
+2025-12-24 18:09:43 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:09:43 gphoto2 detected camera!
+2025-12-24 18:10:15 Keepalive failed, checking camera...
+2025-12-24 18:10:15 gphoto2 --auto-detect rc=0
+2025-12-24 18:10:15 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:10:15 gphoto2 detected camera!
+2025-12-24 18:10:48 Keepalive failed, checking camera...
+2025-12-24 18:10:48 gphoto2 --auto-detect rc=0
+2025-12-24 18:10:48 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:10:48 gphoto2 detected camera!
+2025-12-24 18:11:20 Keepalive failed, checking camera...
+2025-12-24 18:11:20 gphoto2 --auto-detect rc=0
+2025-12-24 18:11:20 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:11:20 gphoto2 detected camera!
+2025-12-24 18:11:52 Keepalive failed, checking camera...
+2025-12-24 18:11:52 gphoto2 --auto-detect rc=0
+2025-12-24 18:11:52 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:11:52 gphoto2 detected camera!
+2025-12-24 18:12:24 Keepalive failed, checking camera...
+2025-12-24 18:12:24 gphoto2 --auto-detect rc=0
+2025-12-24 18:12:24 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:12:24 gphoto2 detected camera!
+2025-12-24 18:12:56 Keepalive failed, checking camera...
+2025-12-24 18:12:56 gphoto2 --auto-detect rc=0
+2025-12-24 18:12:56 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:12:56 gphoto2 detected camera!
+2025-12-24 18:13:28 Keepalive failed, checking camera...
+2025-12-24 18:13:28 gphoto2 --auto-detect rc=0
+2025-12-24 18:13:28 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:13:28 gphoto2 detected camera!
+2025-12-24 18:14:00 Keepalive failed, checking camera...
+2025-12-24 18:14:01 gphoto2 --auto-detect rc=0
+2025-12-24 18:14:01 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:14:01 gphoto2 detected camera!
+2025-12-24 18:14:32 Keepalive failed, checking camera...
+2025-12-24 18:14:33 gphoto2 --auto-detect rc=0
+2025-12-24 18:14:33 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:14:33 gphoto2 detected camera!
+2025-12-24 18:15:05 Keepalive failed, checking camera...
+2025-12-24 18:15:05 gphoto2 --auto-detect rc=0
+2025-12-24 18:15:05 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:15:05 gphoto2 detected camera!
+2025-12-24 18:15:36 Keepalive failed, checking camera...
+2025-12-24 18:15:37 gphoto2 --auto-detect rc=0
+2025-12-24 18:15:37 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:15:37 gphoto2 detected camera!
+2025-12-24 18:16:09 Keepalive failed, checking camera...
+2025-12-24 18:16:09 gphoto2 --auto-detect rc=0
+2025-12-24 18:16:09 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:16:09 gphoto2 detected camera!
+2025-12-24 18:16:41 Keepalive failed, checking camera...
+2025-12-24 18:16:41 gphoto2 --auto-detect rc=0
+2025-12-24 18:16:41 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:16:41 gphoto2 detected camera!
+2025-12-24 18:17:13 Keepalive failed, checking camera...
+2025-12-24 18:17:13 gphoto2 --auto-detect rc=0
+2025-12-24 18:17:13 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:17:13 gphoto2 detected camera!
+2025-12-24 18:17:45 Keepalive failed, checking camera...
+2025-12-24 18:17:45 gphoto2 --auto-detect rc=0
+2025-12-24 18:17:45 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:17:45 gphoto2 detected camera!
+2025-12-24 18:18:17 Keepalive failed, checking camera...
+2025-12-24 18:18:17 gphoto2 --auto-detect rc=0
+2025-12-24 18:18:17 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:18:17 gphoto2 detected camera!
+2025-12-24 18:18:49 Keepalive failed, checking camera...
+2025-12-24 18:18:49 gphoto2 --auto-detect rc=0
+2025-12-24 18:18:49 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:18:49 gphoto2 detected camera!
+2025-12-24 18:19:21 Keepalive failed, checking camera...
+2025-12-24 18:19:21 gphoto2 --auto-detect rc=0
+2025-12-24 18:19:21 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:19:21 gphoto2 detected camera!
+2025-12-24 18:19:53 Keepalive failed, checking camera...
+2025-12-24 18:19:53 gphoto2 --auto-detect rc=0
+2025-12-24 18:19:53 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:19:53 gphoto2 detected camera!
+2025-12-24 18:20:25 Keepalive failed, checking camera...
+2025-12-24 18:20:25 gphoto2 --auto-detect rc=0
+2025-12-24 18:20:25 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:20:25 gphoto2 detected camera!
+2025-12-24 18:20:57 Keepalive failed, checking camera...
+2025-12-24 18:20:57 gphoto2 --auto-detect rc=0
+2025-12-24 18:20:57 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:20:57 gphoto2 detected camera!
+2025-12-24 18:21:30 Keepalive failed, checking camera...
+2025-12-24 18:21:30 gphoto2 --auto-detect rc=0
+2025-12-24 18:21:30 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:21:30 gphoto2 detected camera!
+2025-12-24 18:22:01 Keepalive failed, checking camera...
+2025-12-24 18:22:02 gphoto2 --auto-detect rc=0
+2025-12-24 18:22:02 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:22:02 gphoto2 detected camera!
+2025-12-24 18:22:34 Keepalive failed, checking camera...
+2025-12-24 18:22:34 gphoto2 --auto-detect rc=0
+2025-12-24 18:22:34 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:22:34 gphoto2 detected camera!
+2025-12-24 18:23:06 Keepalive failed, checking camera...
+2025-12-24 18:23:06 gphoto2 --auto-detect rc=0
+2025-12-24 18:23:06 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:23:06 gphoto2 detected camera!
+2025-12-24 18:23:38 Keepalive failed, checking camera...
+2025-12-24 18:23:38 gphoto2 --auto-detect rc=0
+2025-12-24 18:23:38 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:23:38 gphoto2 detected camera!
+2025-12-24 18:24:10 Keepalive failed, checking camera...
+2025-12-24 18:24:10 gphoto2 --auto-detect rc=0
+2025-12-24 18:24:10 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:24:10 gphoto2 detected camera!
+2025-12-24 18:24:42 Keepalive failed, checking camera...
+2025-12-24 18:24:42 gphoto2 --auto-detect rc=0
+2025-12-24 18:24:42 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:24:42 gphoto2 detected camera!
+2025-12-24 18:25:14 Keepalive failed, checking camera...
+2025-12-24 18:25:14 gphoto2 --auto-detect rc=0
+2025-12-24 18:25:14 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:25:14 gphoto2 detected camera!
+2025-12-24 18:25:46 Keepalive failed, checking camera...
+2025-12-24 18:25:47 gphoto2 --auto-detect rc=0
+2025-12-24 18:25:47 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:25:47 gphoto2 detected camera!
+2025-12-24 18:26:19 Keepalive failed, checking camera...
+2025-12-24 18:26:19 gphoto2 --auto-detect rc=0
+2025-12-24 18:26:19 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:26:19 gphoto2 detected camera!
+2025-12-24 18:26:51 Keepalive failed, checking camera...
+2025-12-24 18:26:51 gphoto2 --auto-detect rc=0
+2025-12-24 18:26:51 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:26:51 gphoto2 detected camera!
+2025-12-24 18:27:23 Keepalive failed, checking camera...
+2025-12-24 18:27:23 gphoto2 --auto-detect rc=0
+2025-12-24 18:27:23 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:27:23 gphoto2 detected camera!
+2025-12-24 18:27:55 Keepalive failed, checking camera...
+2025-12-24 18:27:55 gphoto2 --auto-detect rc=0
+2025-12-24 18:27:55 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:27:55 gphoto2 detected camera!
+2025-12-24 18:28:27 Keepalive failed, checking camera...
+2025-12-24 18:28:27 gphoto2 --auto-detect rc=0
+2025-12-24 18:28:27 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:28:27 gphoto2 detected camera!
+2025-12-24 18:28:59 Keepalive failed, checking camera...
+2025-12-24 18:28:59 gphoto2 --auto-detect rc=0
+2025-12-24 18:28:59 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:28:59 gphoto2 detected camera!
+2025-12-24 18:29:31 Keepalive failed, checking camera...
+2025-12-24 18:29:31 gphoto2 --auto-detect rc=0
+2025-12-24 18:29:31 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:29:31 gphoto2 detected camera!
+2025-12-24 18:30:04 Keepalive failed, checking camera...
+2025-12-24 18:30:04 gphoto2 --auto-detect rc=0
+2025-12-24 18:30:04 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:30:04 gphoto2 detected camera!
+2025-12-24 18:30:36 Keepalive failed, checking camera...
+2025-12-24 18:30:36 gphoto2 --auto-detect rc=0
+2025-12-24 18:30:36 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:30:36 gphoto2 detected camera!
+2025-12-24 18:31:08 Keepalive failed, checking camera...
+2025-12-24 18:31:08 gphoto2 --auto-detect rc=0
+2025-12-24 18:31:08 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:31:08 gphoto2 detected camera!
+2025-12-24 18:31:40 Keepalive failed, checking camera...
+2025-12-24 18:31:40 gphoto2 --auto-detect rc=0
+2025-12-24 18:31:40 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:31:40 gphoto2 detected camera!
+2025-12-24 18:32:12 Keepalive failed, checking camera...
+2025-12-24 18:32:12 gphoto2 --auto-detect rc=0
+2025-12-24 18:32:12 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:32:12 gphoto2 detected camera!
+2025-12-24 18:32:44 Keepalive failed, checking camera...
+2025-12-24 18:32:44 gphoto2 --auto-detect rc=0
+2025-12-24 18:32:44 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:32:44 gphoto2 detected camera!
+2025-12-24 18:33:16 Keepalive failed, checking camera...
+2025-12-24 18:33:16 gphoto2 --auto-detect rc=0
+2025-12-24 18:33:16 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:33:16 gphoto2 detected camera!
+2025-12-24 18:33:48 Keepalive failed, checking camera...
+2025-12-24 18:33:48 gphoto2 --auto-detect rc=0
+2025-12-24 18:33:48 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:33:48 gphoto2 detected camera!
+2025-12-24 18:34:21 Keepalive failed, checking camera...
+2025-12-24 18:34:21 gphoto2 --auto-detect rc=0
+2025-12-24 18:34:21 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:34:21 gphoto2 detected camera!
+2025-12-24 18:34:53 Keepalive failed, checking camera...
+2025-12-24 18:34:53 gphoto2 --auto-detect rc=0
+2025-12-24 18:34:53 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:34:53 gphoto2 detected camera!
+2025-12-24 18:35:25 Keepalive failed, checking camera...
+2025-12-24 18:35:25 gphoto2 --auto-detect rc=0
+2025-12-24 18:35:25 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:35:25 gphoto2 detected camera!
+2025-12-24 18:35:57 Keepalive failed, checking camera...
+2025-12-24 18:35:57 gphoto2 --auto-detect rc=0
+2025-12-24 18:35:57 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:35:57 gphoto2 detected camera!
+2025-12-24 18:36:29 Keepalive failed, checking camera...
+2025-12-24 18:36:29 gphoto2 --auto-detect rc=0
+2025-12-24 18:36:29 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:36:29 gphoto2 detected camera!
+2025-12-24 18:37:01 Keepalive failed, checking camera...
+2025-12-24 18:37:01 gphoto2 --auto-detect rc=0
+2025-12-24 18:37:01 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:37:01 gphoto2 detected camera!
+2025-12-24 18:37:33 Keepalive failed, checking camera...
+2025-12-24 18:37:34 gphoto2 --auto-detect rc=0
+2025-12-24 18:37:34 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:37:34 gphoto2 detected camera!
+2025-12-24 18:38:05 Keepalive failed, checking camera...
+2025-12-24 18:38:05 gphoto2 --auto-detect rc=0
+2025-12-24 18:38:05 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:38:05 gphoto2 detected camera!
+2025-12-24 18:38:37 Keepalive failed, checking camera...
+2025-12-24 18:38:37 gphoto2 --auto-detect rc=0
+2025-12-24 18:38:37 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:38:37 gphoto2 detected camera!
+2025-12-24 18:39:09 Keepalive failed, checking camera...
+2025-12-24 18:39:09 gphoto2 --auto-detect rc=0
+2025-12-24 18:39:09 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:39:09 gphoto2 detected camera!
+2025-12-24 18:39:41 Keepalive failed, checking camera...
+2025-12-24 18:39:42 gphoto2 --auto-detect rc=0
+2025-12-24 18:39:42 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:39:42 gphoto2 detected camera!
+2025-12-24 18:40:13 Keepalive failed, checking camera...
+2025-12-24 18:40:14 gphoto2 --auto-detect rc=0
+2025-12-24 18:40:14 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:40:14 gphoto2 detected camera!
+2025-12-24 18:40:46 Keepalive failed, checking camera...
+2025-12-24 18:40:46 gphoto2 --auto-detect rc=0
+2025-12-24 18:40:46 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:40:46 gphoto2 detected camera!
+2025-12-24 18:41:18 Keepalive failed, checking camera...
+2025-12-24 18:41:18 gphoto2 --auto-detect rc=0
+2025-12-24 18:41:18 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:41:18 gphoto2 detected camera!
+2025-12-24 18:41:50 Keepalive failed, checking camera...
+2025-12-24 18:41:50 gphoto2 --auto-detect rc=0
+2025-12-24 18:41:50 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:41:50 gphoto2 detected camera!
+2025-12-24 18:42:22 Keepalive failed, checking camera...
+2025-12-24 18:42:22 gphoto2 --auto-detect rc=0
+2025-12-24 18:42:22 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:42:22 gphoto2 detected camera!
+2025-12-24 18:42:54 Keepalive failed, checking camera...
+2025-12-24 18:42:54 gphoto2 --auto-detect rc=0
+2025-12-24 18:42:54 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:42:54 gphoto2 detected camera!
+2025-12-24 18:43:26 Keepalive failed, checking camera...
+2025-12-24 18:43:26 gphoto2 --auto-detect rc=0
+2025-12-24 18:43:26 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:43:26 gphoto2 detected camera!
+2025-12-24 18:43:59 Keepalive failed, checking camera...
+2025-12-24 18:43:59 gphoto2 --auto-detect rc=0
+2025-12-24 18:43:59 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:43:59 gphoto2 detected camera!
+2025-12-24 18:44:31 Keepalive failed, checking camera...
+2025-12-24 18:44:31 gphoto2 --auto-detect rc=0
+2025-12-24 18:44:31 gphoto2 output: Model                          Port            
+----------------------------------------------------------
+Mass Storage Camera            disk:/mnt/i
+2025-12-24 18:44:31 gphoto2 detected camera!
+2025-12-24 18:44:47 Countdown complete, capturing photo...
+2025-12-24 18:44:47 Saving photo to: c:\Users\pusap\OneDrive\Desktop\project\Photobooth\Temp\captures\IMG_1766623487.jpg
+2025-12-24 18:44:47 capture: starting capture to c:\Users\pusap\OneDrive\Desktop\project\Photobooth\Temp\captures\IMG_1766623487.jpg
+2025-12-24 18:44:47 capture: WSL path = /mnt/c/Users/pusap/OneDrive/Desktop/project/Photobooth/Temp/captures/IMG_1766623487.jpg
+2025-12-24 18:44:47 capture: running gphoto2 --port 'usb:001,002' --capture-image-and-download --filename '/mnt/c/Users/pusap/OneDrive/Desktop/project/Photobooth/Temp/captures/IMG_1766623487.jpg' 2>&1
+2025-12-24 18:45:17 capture: fast path failed, waiting for gphoto2 to finish...
+2025-12-24 18:45:17 capture: gphoto2 finished, rc=1
+2025-12-24 18:45:17 capture: FAILED - file not created
+2025-12-24 18:45:17 Capture result: False
+2025-12-24 18:45:17 Capture failed, showing error...
+2025-12-24 18:45:35 
+============================================================
+2025-12-24 18:45:35 STARTING FULLY AUTOMATED CAMERA SETUP
+2025-12-24 18:45:35 ============================================================
+2025-12-24 18:45:35 
+Step 1: Ensuring WSL is running...
+2025-12-24 18:45:38 
+Step 2: Finding camera BusID via usbipd...
+2025-12-24 18:45:38 Camera not found in connected devices. Is the camera plugged in and turned on?
+2025-12-24 18:45:38 ERROR: Camera not found in usbipd list
+2025-12-24 18:45:44 
+============================================================
+2025-12-24 18:45:44 STARTING FULLY AUTOMATED CAMERA SETUP
+2025-12-24 18:45:44 ============================================================
+2025-12-24 18:45:44 
+Step 1: Ensuring WSL is running...
+2025-12-24 18:45:44 
+Step 2: Finding camera BusID via usbipd...
+2025-12-24 18:45:44 Camera not found in connected devices. Is the camera plugged in and turned on?
+2025-12-24 18:45:44 ERROR: Camera not found in usbipd list
+2025-12-24 18:54:25 
+============================================================
+2025-12-24 18:54:25 STARTING FULLY AUTOMATED CAMERA SETUP
+2025-12-24 18:54:25 ============================================================
+2025-12-24 18:54:25 
+Step 1: Ensuring WSL is running...
+2025-12-24 18:54:28 
+Step 2: Finding camera BusID via usbipd...
+2025-12-24 18:54:28 Found camera: 1-7    04b0:0454  Z6_3                                                          Shared
+2025-12-24 18:54:28 Found camera at BusID: 1-7
+2025-12-24 18:54:28 
+Step 3: Checking camera share state...
+2025-12-24 18:54:28 Current state: shared
+2025-12-24 18:54:28 
+Step 4: Attaching camera to WSL...
+2025-12-24 18:54:28 robust attach; initial state: shared
+2025-12-24 18:54:28 Checking if WSL USB/IP is ready...
+2025-12-24 18:54:28 WSL USB/IP subsystem not ready, attempting to load modules...
+2025-12-24 18:54:28 Loading USB kernel modules in WSL...
+2025-12-24 18:54:38 Warning: Could not load USB modules: Timeout after 10s
+2025-12-24 18:54:38 attach attempt 1/2
+2025-12-24 18:54:38 Calling attach_camera for busid 1-7...
+2025-12-24 18:54:38 usbipd attach --wsl Ubuntu --busid 1-7

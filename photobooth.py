@@ -29,43 +29,48 @@ from abc import ABC, abstractmethod
 # CONFIGURATION
 # ============================================================================
 
-# Directories
-PHOTO_DIR = os.path.join(os.environ['USERPROFILE'], 'Desktop', 'Photobooth', 'Photos')
-TEMP_DIR = os.path.join(os.environ['USERPROFILE'], 'Desktop', 'Photobooth', 'Temp')
-DRIVE_DIR = r"G:\My Drive\New_Year_Photo_Booth"
+# Directories - relative to script location
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PHOTO_DIR = os.path.join(SCRIPT_DIR, 'Photos')
+TEMP_DIR = os.path.join(SCRIPT_DIR, 'Temp')
+DRIVE_DIR = r"G:\My Drive\New_Year_Photo_Booth"  # Google Drive location
 LOG_PATH = os.path.join(TEMP_DIR, "booth.log")
 LOGO_CANDIDATES = [
     os.environ.get("LOGO_PATH", ""),
+    os.path.join(SCRIPT_DIR, "logo.png"),
+    os.path.join(SCRIPT_DIR, "logo.PNG"),
+    os.path.join(SCRIPT_DIR, "logo.jpg"),
+    os.path.join(SCRIPT_DIR, "logo.jpeg"),
     "logo.png",
     "logo.PNG",
-    "logo.jpg",
-    "logo.jpeg",
 ]
 
 # Promo logo for right side
 PROMO_LOGO_CANDIDATES = [
     os.environ.get("PROMO_LOGO_PATH", ""),
+    os.path.join(SCRIPT_DIR, "promo.png"),
+    os.path.join(SCRIPT_DIR, "promo.PNG"),
+    os.path.join(SCRIPT_DIR, "promo.jpg"),
+    os.path.join(SCRIPT_DIR, "promo.jpeg"),
+    os.path.join(SCRIPT_DIR, "sponsor.png"),
+    os.path.join(SCRIPT_DIR, "sponsor.jpg"),
     "promo.png",
     "promo.PNG",
-    "promo.jpg",
-    "promo.jpeg",
-    "sponsor.png",
-    "sponsor.jpg",
 ]
 
+# Create all required directories
 os.makedirs(PHOTO_DIR, exist_ok=True)
 os.makedirs(TEMP_DIR, exist_ok=True)
-# Create subdirectories for organized temp storage
 os.makedirs(os.path.join(TEMP_DIR, "captures"), exist_ok=True)
 os.makedirs(os.path.join(TEMP_DIR, "cache"), exist_ok=True)
 try:
     os.makedirs(DRIVE_DIR, exist_ok=True)
 except Exception:
-    DRIVE_DIR = os.path.join(os.environ['USERPROFILE'], 'Desktop', 'Photobooth_Saved')
+    DRIVE_DIR = os.path.join(SCRIPT_DIR, 'Saved')
     os.makedirs(DRIVE_DIR, exist_ok=True)
 
 # WSL / gphoto2 settings
-WSL_DISTRO = "Ubuntu-22.04"
+WSL_DISTRO = "Ubuntu"
 GPHOTO_CMD = "gphoto2"
 
 # USB camera settings - Nikon Z6_3
@@ -702,6 +707,7 @@ class WSLGPhotoCamera(CameraInterface):
     def __init__(self, distro: Optional[str] = WSL_DISTRO):
         self.distro = distro
         self.camera_name = "USB PTP Class Camera"
+        self.camera_port = None  # Store the USB port for explicit targeting
         self.connected = False
 
     def _wsl_prefix(self):
@@ -725,11 +731,27 @@ class WSLGPhotoCamera(CameraInterface):
             result = self._run_wsl(f"{GPHOTO_CMD} --auto-detect", timeout=10)
             
             if result.returncode == 0:
+                # Look for USB PTP camera first (preferred over Mass Storage)
+                for ln in result.stdout.splitlines():
+                    if ln.strip() and not ln.lower().startswith('model') and not ln.strip().startswith('-'):
+                        # Parse camera name and port
+                        parts = ln.strip().split()
+                        if len(parts) >= 2:
+                            port = parts[-1]  # Last column is the port
+                            # Prefer USB PTP over disk/mass storage
+                            if port.startswith('usb:'):
+                                self.camera_port = port
+                                self.camera_name = ' '.join(parts[:-1])
+                                self.connected = True
+                                write_log(f"✓ Camera connected: {self.camera_name} on {self.camera_port}")
+                                return True
+                
+                # Fallback: accept any camera if no USB PTP found
                 for ln in result.stdout.splitlines():
                     if ln.strip() and not ln.lower().startswith('model') and not ln.strip().startswith('-'):
                         self.camera_name = ln.strip()
                         self.connected = True
-                        write_log(f"✓ Camera connected: {self.camera_name}")
+                        write_log(f"✓ Camera connected (fallback): {self.camera_name}")
                         return True
             
             write_log("✗ Camera detection failed")
@@ -740,6 +762,7 @@ class WSLGPhotoCamera(CameraInterface):
 
     def disconnect(self):
         self.connected = False
+        self.camera_port = None
 
     def is_connected(self) -> bool:
         return self.connected
@@ -758,10 +781,14 @@ class WSLGPhotoCamera(CameraInterface):
 
             wsl_path = windows_path_to_wsl(save_path)
             write_log(f"capture: WSL path = {wsl_path}")
-            write_log("capture: running gphoto2 --capture-image-and-download (background)...")
+            
+            # Build gphoto2 command with explicit port if available (fixes multi-interface cameras)
+            port_arg = f"--port '{self.camera_port}'" if self.camera_port else ""
+            gphoto_cmd = f"{GPHOTO_CMD} {port_arg} --capture-image-and-download --filename '{wsl_path}' 2>&1"
+            write_log(f"capture: running {gphoto_cmd}")
             
             # Start gphoto2 in background and poll for file
-            full_cmd = self._wsl_prefix() + ["bash", "-lc", f"{GPHOTO_CMD} --capture-image-and-download --filename '{wsl_path}' 2>&1"]
+            full_cmd = self._wsl_prefix() + ["bash", "-lc", gphoto_cmd]
             proc = subprocess.Popen(full_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             
             # Poll for file existence (up to 30 seconds)
@@ -1516,7 +1543,7 @@ class PhotoBooth:
         try:
             # Use --get-config to query a simple setting - this keeps USB alive
             result = subprocess.run(
-                ["wsl", "-d", "Ubuntu-22.04", "gphoto2", "--get-config", "/main/status/serialnumber"],
+                ["wsl", "-d", WSL_DISTRO, "gphoto2", "--get-config", "/main/status/serialnumber"],
                 capture_output=True,
                 timeout=5
             )

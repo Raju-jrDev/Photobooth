@@ -47,7 +47,7 @@ except Exception:
     os.makedirs(DRIVE_DIR, exist_ok=True)
 
 # WSL / gphoto2 settings
-WSL_DISTRO = "Ubuntu-22.04"
+WSL_DISTRO = "Ubuntu"
 GPHOTO_CMD = "gphoto2"
 
 # USB camera settings - Nikon Z6_3
