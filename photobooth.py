@@ -174,7 +174,7 @@ def resolve_promo_logo_path() -> Optional[str]:
     return None
 
 
-def cleanup_old_temp_files(max_age_days: int = 7):
+def cleanup_old_temp_files(max_age_days: int = 0):
     """Clean up temporary files older than max_age_days."""
     try:
         cutoff_time = time.time() - (max_age_days * 86400)
@@ -1089,6 +1089,7 @@ class ThemedDialog:
             dx + dw//2, dy + 65,
             text=icon, font=("Segoe UI Emoji", 52),
             fill=THEME_ACCENT,
+            anchor="center", justify="center",
             tags="dialog_overlay"
         )
         
@@ -1969,7 +1970,7 @@ class PhotoBooth:
 
     def init_camera(self):
         # Clean up old temp files on startup
-        cleanup_old_temp_files(max_age_days=7)
+        cleanup_old_temp_files(max_age_days=0)
         self.update_ui_state("INIT")
         threading.Thread(target=self._init_camera_thread, daemon=True).start()
 
@@ -2528,8 +2529,9 @@ class PhotoBooth:
             if self.current_photo_path and os.path.exists(self.current_photo_path):
                 filename = os.path.basename(self.current_photo_path)
                 dest = os.path.join(DRIVE_DIR, filename)
-                shutil.copy2(self.current_photo_path, dest)
-                write_log(f"[Print #{job_number}] Saved to drive: {dest}")
+                # Don't copy to drive during print - keeps Upload button state separate
+                # shutil.copy2(self.current_photo_path, dest)
+                # write_log(f"[Print #{job_number}] Saved to drive: {dest}")
                 
                 try:
                     printer_name = win32print.GetDefaultPrinter()
